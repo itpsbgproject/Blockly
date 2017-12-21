@@ -68,11 +68,11 @@ function start() {
 
   // Parse the URL arguments.
   var match = location.search.match(/dir=([^&]+)/);
-  var rtl = match && match[1] == 'rtl';
+  var rtl = match && match[1] === 'rtl';
   document.forms.options.elements.dir.selectedIndex = Number(rtl);
   var toolbox = getToolboxElement();
   document.forms.options.elements.toolbox.selectedIndex =
-      Number(toolbox.getElementsByTagName('category').length == 0);
+      Number(toolbox.getElementsByTagName('category').length === 0);
   match = location.search.match(/side=([^&]+)/);
   var side = match ? match[1] : 'start';
   document.forms.options.elements.side.value = side;
@@ -86,7 +86,7 @@ function start() {
               length: 3,
               colour: '#ccc',
               snap: true},
-           horizontalLayout: side == 'top' || side == 'bottom',
+           horizontalLayout: side === 'top' || side === 'bottom',
            maxBlocks: Infinity,
            media: '../media/',
            oneBasedIndex: true,
@@ -94,7 +94,7 @@ function start() {
            rtl: rtl,
            scrollbars: true,
            toolbox: toolbox,
-           toolboxPosition: side == 'top' || side == 'start' ? 'start' : 'end',
+           toolboxPosition: side === 'top' || side === 'start' ? 'start' : 'end',
            zoom:
              {controls: true,
               wheel: true,
@@ -126,7 +126,8 @@ function setBackgroundColor() {
   var regexFile = /^file[\S]*$/;
 
   if (regexFile.test(currentPage)) {
-    document.getElementsByTagName('body')[0].style.backgroundColor = lilac;
+    var element = document.getElementsByTagName('body')[0];
+    if(element.className) {element.className.backgroundColor = element.className.backgroundColor + lilac;}
   }
 }
 

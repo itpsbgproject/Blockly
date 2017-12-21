@@ -113,12 +113,12 @@ function fetchFile(xmlUrl) {
   } catch (e) {
     // Attempt to diagnose the problem.
     var msg = 'Error: Unable to load XML data.\n';
-    if (window.location.protocol == 'file:') {
+    if (window.location.protocol === 'file:') {
       msg += 'This may be due to a security restriction preventing\n' +
           'access when using the file:// protocol.\n' +
           'Use an http webserver, or a less paranoid browser.\n';
     }
-    alert(msg + '\n' + e);
+    alert(msg + e);
     return null;
   }
   return xmlHttp.responseText;
@@ -133,7 +133,8 @@ function fromXml(xmlText) {
   try {
     var xmlDoc = Blockly.Xml.textToDom(xmlText);
   } catch (e) {
-    alert('Error parsing XML:\n' + e);
+    var op = 'Error parsing XML:\n';
+    alert(op + e);
     return;
   }
   Blockly.Xml.domToWorkspace(xmlDoc, demoWorkspace);

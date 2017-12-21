@@ -44,7 +44,7 @@ function start() {
   var toolbox =
       document.getElementById('toolbox-' + (match ? match[1] : 'categories'));
   document.forms.options.elements.toolbox.selectedIndex =
-      Number(toolbox.getElementsByTagName('category').length == 0);
+      Number(toolbox.getElementsByTagName('category').length === 0);
   startBlocklyInstance('VertStartLTR', false, false, 'start', toolbox);
   startBlocklyInstance('VertStartRTL', true, false, 'start', toolbox);
 
