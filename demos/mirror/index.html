@@ -63,7 +63,7 @@
     primaryWorkspace.addChangeListener(mirrorEvent);
 
     function mirrorEvent(primaryEvent) {
-      if (primaryEvent.type == Blockly.Events.UI) {
+      if (primaryEvent.type === Blockly.Events.UI) {
         return;  // Don't mirror UI events.
       }
       // Convert event to JSON.  This could then be transmitted across the net.

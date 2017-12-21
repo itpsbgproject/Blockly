@@ -204,14 +204,17 @@
         // And then show generated code in an alert.
         // In a timeout to allow the outputArea.value to reset first.
         setTimeout(function() {
-          alert('Ready to execute the following code\n' +
-            '===================================\n' + latestCode);
+          var msgg = 'Ready to execute the following code\n' + '===================================\n';
+          alert(msgg + latestCode);
           highlightPause = true;
           stepCode();
         }, 1);
         return;
       }
       highlightPause = false;
+	  function p() {
+              stepButton.disabled = '';
+            }
       do {
         try {
           var hasMoreCode = myInterpreter.step();
@@ -225,9 +228,7 @@
 
             // Cool down, to discourage accidentally restarting the program.
             stepButton.disabled = 'disabled';
-            setTimeout(function() {
-              stepButton.disabled = '';
-            }, 2000);
+            setTimeout(p(), 2000);
 
             return;
           }

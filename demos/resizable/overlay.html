@@ -6,7 +6,7 @@
   <script src="../../blockly_compressed.js"></script>
   <script src="../../blocks_compressed.js"></script>
   <script src="../../msg/js/en.js"></script>
-  <style>
+<style>
     html, body {
       height: 100%;
       margin: 0;
@@ -69,7 +69,7 @@
     var demoWorkspace = Blockly.inject(blocklyDiv,
         {media: '../../media/',
          toolbox: document.getElementById('toolbox')});
-    var onresize = function(e) {
+    var onresize = function() {
       // Compute the absolute coordinates and dimensions of blocklyArea.
       var element = blocklyArea;
       var x = 0;
@@ -80,10 +80,10 @@
         element = element.offsetParent;
       } while (element);
       // Position blocklyDiv over blocklyArea.
-      blocklyDiv.style.left = x + 'px';
-      blocklyDiv.style.top = y + 'px';
-      blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
-      blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+      if(blocklyDiv.className) {blocklyDiv.className.left = blocklyDiv.className.left + x + 'px';}
+      if(blocklyDiv.className) {blocklyDiv.className.top = blocklyDiv.className.left + y + 'px';}
+      if(blocklyDiv.className && blocklyArea.className) {blocklyDiv.className.width = blocklyDiv.className.width + blocklyArea.className.offsetWidth + 'px';}
+      if(blocklyDiv.className && blocklyArea.className) {blocklyDiv.className.height = blocklyDiv.className.height + blocklyArea.className.offsetHeight + 'px';}
     };
     window.addEventListener('resize', onresize, false);
     onresize();

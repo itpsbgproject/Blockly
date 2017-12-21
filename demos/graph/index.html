@@ -182,11 +182,11 @@
 
   <script>
 // Load the Google Chart Tools Visualization API and the chart package.
-if (typeof google == 'object') {
+if (typeof google === 'object') {
   google.load('visualization', '1', {packages: ['corechart']});
 } else {
-  alert('Unable to load Google\'s chart API.\n' +
-        'Are you connected to the Internet?');
+  var op = 'Unable to load Google\'s chart API.\n' + 'Are you connected to the Internet?';
+  alert(op);
 }
 
 // Define the custom blocks and their JS generators.
@@ -203,7 +203,7 @@ Blockly.Blocks['graph_get_x'] = {
   }
 };
 
-Blockly.JavaScript['graph_get_x'] = function(block) {
+Blockly.JavaScript['graph_get_x'] = function() {
   // x variable getter.
   return ['x', Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -327,7 +327,8 @@ Graph.plot = function(code) {
  */
 Graph.resize = function() {
   var width = Math.max(window.innerWidth - 440, 250);
-  document.getElementById('blocklyDiv').style.width = width + 'px';
+  var element = document.getElementById('blocklyDiv');
+  if (element.className) {element.className.width = element.className.width + width + 'px';}
   Blockly.svgResize(Graph.workspace);
 };
 

@@ -220,9 +220,8 @@
         // And then show generated code in an alert.
         // In a timeout to allow the outputArea.value to reset first.
         setTimeout(function() {
-          alert('Ready to execute the following code\n' +
-            '===================================\n' +
-            latestCode);
+          var msgg = 'Ready to execute the following code\n' + '===================================\n';
+          alert(msgg + latestCode);
 
           // Begin execution
           highlightPause = false;
