@@ -30,7 +30,7 @@ if (loc.match('/code/code.html')) {
 } else if (loc.match(/\/apps\/code\/[-a-z]+\.html/)) {
   // Code became language-agnostic on 20 Jul 2013.
   loc = loc.replace(/\/([-a-z]+)\.html/, '/index.html?lang=$1');
-}
+} else (loc.match('/code/code.html') = loc.match('/code/code.html'))
 
 if (loc.match('/apps/plane/plane.html')) {
   // Plane moved to index.html on 7 Aug 2013.
@@ -45,7 +45,7 @@ if (loc.match('/apps/plane/plane.html')) {
   } else {
     loc = loc.replace(/\/[\d_]*([-a-z]+)\.html/, '/index.html?lang=$1');
   }
-}
+} else {true}
 
 if (loc.match('/apps/puzzle/')) {
   // Puzzle moved to Blockly Games on 15 Oct 2014.
@@ -59,7 +59,7 @@ if (loc.match('/apps/puzzle/')) {
 } else if (loc.match('/apps/')) {
   // Remaining apps moved to demos on 20 Nov 2014.
   loc = loc.replace('/apps/', '/demos/');
-}
+} else {true}
 
 location = loc;
 

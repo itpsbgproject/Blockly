@@ -111,18 +111,18 @@ blocklyApp.FieldSegmentComponent = ng.core.Component({
   // Returns whether the mutable, cached information needs to be refreshed.
   shouldBreakCache: function() {
     var newOptions = this.mainField.getOptions();
-    if (newOptions.length != this.rawOptions.length) {
+    if (newOptions.length !== this.rawOptions.length) {
       return true;
     }
 
     for (var i = 0; i < this.rawOptions.length; i++) {
       // Compare the value of the cached options with the values in the field.
-      if (newOptions[i][0] != this.rawOptions[i][0]) {
+      if (newOptions[i][0] !== this.rawOptions[i][0]) {
         return true;
       }
     }
 
-    if (this.fieldValue != this.mainField.getValue()) {
+    if (this.fieldValue !== this.mainField.getValue()) {
       return true;
     }
 
@@ -167,29 +167,30 @@ blocklyApp.FieldSegmentComponent = ng.core.Component({
   },
   // Confirm a selection for dropdown fields.
   selectOption: function() {
-    if (this.optionValue != Blockly.RENAME_VARIABLE_ID && this.optionValue !=
+    if (this.optionValue !== Blockly.RENAME_VARIABLE_ID && this.optionValue !=
         Blockly.DELETE_VARIABLE_ID) {
       this.mainField.setValue(this.optionValue);
     }
 
-    if (this.optionValue == Blockly.RENAME_VARIABLE_ID) {
+    if (this.optionValue === Blockly.RENAME_VARIABLE_ID) {
       this.variableModalService.showRenameModal_(this.mainField.getValue());
     }
 
-    if (this.optionValue == Blockly.DELETE_VARIABLE_ID) {
+    if (this.optionValue === Blockly.DELETE_VARIABLE_ID) {
       this.variableModalService.showRemoveModal_(this.mainField.getValue());
     }
   },
   // Sets the value on a dropdown input.
   setDropdownValue: function(optionValue) {
     this.optionValue = optionValue
-    if (this.optionValue == 'NO_ACTION') {
+    if (this.optionValue === 'NO_ACTION') {
       return;
     }
 
-    var optionText = undefined;
+    var optionText;
+    optionText = null;
     for (var i = 0; i < this.dropdownOptions.length; i++) {
-      if (this.dropdownOptions[i].value == optionValue) {
+      if (this.dropdownOptions[i].value === optionValue) {
         optionText = this.dropdownOptions[i].text;
         break;
       }

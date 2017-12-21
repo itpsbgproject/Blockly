@@ -119,12 +119,9 @@ blocklyApp.ToolboxModalComponent = ng.core.Component({
               evt.preventDefault();
               evt.stopPropagation();
 
-              if (that.activeButtonIndex == -1) {
+              if (that.activeButtonIndex === -1) {
                 return;
               }
-
-              var button = document.getElementById(
-                  that.getOptionId(that.activeButtonIndex));
 
               for (var i = 0; i < that.toolboxCategories.length; i++) {
                 if (that.firstBlockIndexes[i + 1] > that.activeButtonIndex) {

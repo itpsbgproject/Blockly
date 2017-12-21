@@ -55,9 +55,9 @@ blocklyApp.BlockConnectionService = ng.core.Class({
 
     var desiredType = Blockly.OPPOSITE_TYPE[targetConnection.type];
     var potentialConnection = (
-        desiredType == Blockly.OUTPUT_VALUE ? block.outputConnection :
-        desiredType == Blockly.PREVIOUS_STATEMENT ? block.previousConnection :
-        desiredType == Blockly.NEXT_STATEMENT ? block.nextConnection :
+        desiredType === Blockly.OUTPUT_VALUE ? block.outputConnection :
+        desiredType === Blockly.PREVIOUS_STATEMENT ? block.previousConnection :
+        desiredType === Blockly.NEXT_STATEMENT ? block.nextConnection :
         null);
 
     if (potentialConnection &&
@@ -87,7 +87,7 @@ blocklyApp.BlockConnectionService = ng.core.Class({
     // the marked connection to the marked connection.
     var ancestorBlock = this.getMarkedConnectionSourceBlock();
     while (ancestorBlock) {
-      if (ancestorBlock.id == block.id) {
+      if (ancestorBlock.id === block.id) {
         return false;
       }
       ancestorBlock = ancestorBlock.getParent();
@@ -105,7 +105,7 @@ blocklyApp.BlockConnectionService = ng.core.Class({
 
     var targetConnection = null;
     if (this.markedConnection_.targetBlock() &&
-        this.markedConnection_.type == Blockly.PREVIOUS_STATEMENT) {
+        this.markedConnection_.type === Blockly.PREVIOUS_STATEMENT) {
       // Is the marked connection a 'previous' connection that is already
       // connected? If so, find the block that's currently connected to it, and
       // use that block's 'next' connection as the new marked connection.

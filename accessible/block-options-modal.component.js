@@ -49,7 +49,7 @@ blocklyApp.BlockOptionsModalComponent = ng.core.Component({
                *ngFor="#buttonInfo of actionButtonsInfo; #buttonIndex=index">
             <button [id]="getOptionId(buttonIndex)"
                     (click)="buttonInfo.action(); hideModal();"
-                    [ngClass]="{activeButton: activeButtonIndex == buttonIndex}">
+                    [ngClass]="{activeButton: activeButtonIndex === buttonIndex}">
               {{buttonInfo.translationIdForText|translate}}
             </button>
           </div>
@@ -58,7 +58,7 @@ blocklyApp.BlockOptionsModalComponent = ng.core.Component({
         <div class="blocklyModalButtonContainer">
           <button [id]="getCancelOptionId()"
                   (click)="dismissModal()"
-                  [ngClass]="{activeButton: activeButtonIndex == actionButtonsInfo.length}">
+                  [ngClass]="{activeButton: activeButtonIndex === actionButtonsInfo.length}">
             {{'CANCEL'|translate}}
           </button>
         </div>
@@ -94,12 +94,10 @@ blocklyApp.BlockOptionsModalComponent = ng.core.Component({
               evt.preventDefault();
               evt.stopPropagation();
 
-              if (that.activeButtonIndex == -1) {
+              if (that.activeButtonIndex === -1) {
                 return;
               }
 
-              var button = document.getElementById(
-                  that.getOptionId(that.activeButtonIndex));
               if (that.activeButtonIndex <
                   that.actionButtonsInfo.length) {
                 that.actionButtonsInfo[that.activeButtonIndex].action();

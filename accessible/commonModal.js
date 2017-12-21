@@ -10,22 +10,22 @@ Blockly.CommonModal.setupKeyboardOverrides = function(component) {
       evt.preventDefault();
       evt.stopPropagation();
 
-      if (evt.shiftKey) {
+      if (evt.shiftKey && component.activeButtonIndex <= 0) {
         // Move to the previous item in the list.
-        if (component.activeButtonIndex <= 0) {
+        
           component.activeActionButtonIndex = 0;
           component.audioService.playOopsSound();
         } else {
           component.activeButtonIndex--;
         }
-      } else {
+       
         // Move to the next item in the list.
-        if (component.activeButtonIndex == component.numInteractiveElements(component) - 1) {
+        if (component.activeButtonIndex === component.numInteractiveElements(component) - 1) {
           component.audioService.playOopsSound();
         } else {
           component.activeButtonIndex++;
         }
-      }
+      
 
       component.focusOnOption(component.activeButtonIndex, component);
     },
@@ -47,7 +47,7 @@ Blockly.CommonModal.setupKeyboardOverrides = function(component) {
 Blockly.CommonModal.getInteractiveElements = function(component) {
   return Array.prototype.filter.call(
     component.getInteractiveContainer().elements, function(element) {
-    if (element.type === 'hidden') {
+    if (element.type == 'hidden') {
       return false;
     }
     if (element.disabled) {
