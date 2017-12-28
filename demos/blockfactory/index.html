@@ -1,3 +1,4 @@
+<!--This page shows the query results -->
 <!DOCTYPE html>/
 <html>
 <head>
@@ -10,7 +11,7 @@
 <body>
   <h1><a href="https://developers.google.com/blockly/"  TITLE="Company contact information.">Blockly</a> &gt;
     <a href="../index.html"  TITLE="Company contact information.">Demos</a> &gt; Blockly Developer Tools
-    <button id="helpButton" title="View documentation in new window." NAME="" value="">
+    <button id="helpButton" title="View documentation in new window." NAME="" VALUE="yel"> <BR>
       <span>Help</span>
     </button>
   </h1>
@@ -30,12 +31,12 @@
       <br>
       <h3>Block Selector</h3>
       <div class="dropdown">
-        <button id="button_setBlocks" NAME="" value="">Select</button>
+        <button id="button_setBlocks" NAME="" VALUE="yel"> <BR>Select</button>
         <div id="dropdownDiv_setBlocks" class="dropdown-content">
           <a id="dropdown_addAllFromLib" title="Select all block library blocks.">All Stored in Block Library</a>
           <a id="dropdown_addAllUsed" title="Select all block library blocks used in workspace factory.">All Used in Workspace Factory</a>
         </div>
-        <button id="clearSelectedButton" title="Clear selected blocks." NAME="" value="">Clear Selected</a>
+        <button id="clearSelectedButton" title="Clear selected blocks." NAME="" VALUE="yel"> <BR>Clear Selected</a>
       </div>
 
       <div id="blockSelector"></div>
@@ -51,7 +52,7 @@
           <p>Currently Selected:</p>
           <p id="selectedBlocksText"></p>
         </div>
-        <label><input type="checkbox" id="blockDefCheck" NAME="" value="">Block Definition(s)</label><br>
+        <label><input type="checkbox" id="blockDefCheck" NAME="" VALUE="yel"> <BR>Block Definition(s)</label><br>
         <div id="blockDefSettings" class="subsettings">
           <label>Format:
           <select id="exportFormat" NAME="">
@@ -64,7 +65,7 @@
         </div>
         <br>
 
-        <label><input type="checkbox" id="genStubCheck" NAME="" value="">Generator Stub(s)</label><br>
+        <label><input type="checkbox" id="genStubCheck" NAME="" VALUE="yel"> <BR>Generator Stub(s)</label><br>
         <div id="genStubSettings" class="subsettings">
           <label>Language:
           <select id="exportLanguage" NAME="">
@@ -80,7 +81,7 @@
         </div>
         <br>
       </form>
-      <button id="exporterSubmitButton" title="Download block starter code as specified in export settings." NAME="" value="">Export</button>
+      <button id="exporterSubmitButton" title="Download block starter code as specified in export settings." NAME="" VALUE="yel"> <BR>Export</button>
     </div>
     <div id="exportPreview">
       <br>
@@ -102,7 +103,7 @@
     <div id="factoryHeader">
       <p>
         <div class="dropdown">
-        <button id="button_importBlocks" NAME="" value="">Import Custom Blocks</button>
+        <button id="button_importBlocks" NAME="" VALUE="yel"> <BR>Import Custom Blocks</button>
           <div id="dropdownDiv_importBlocks" class="dropdown-content">
             <input type="file" id="input_importBlocksJson" accept=".js, .json, .txt" class="inputfile" NAME=""></input>
             <label for="input_importBlocksJson">From JSON</label>
@@ -112,7 +113,7 @@
         </div>
 
         <div class="dropdown">
-        <button id="button_load" NAME="" value="">Load to Edit</button>
+        <button id="button_load" NAME="" VALUE="yel"> <BR>Load to Edit</button>
           <div id="dropdownDiv_load" class="dropdown-content">
             <input type="file" id="input_loadToolbox" accept=".xml" class="inputfile" NAME=""></input>
             <label for="input_loadToolbox">Toolbox</label>
@@ -122,7 +123,7 @@
         </div>
 
         <div class="dropdown">
-        <button id="button_export" NAME="" value="">Export</button>
+        <button id="button_export" NAME="" VALUE="yel"> <BR>Export</button>
           <div id="dropdownDiv_export" class="dropdown-content">
             <a id="dropdown_exportOptions"  TITLE="Company contact information.">Starter Code</a>
             <a id="dropdown_exportToolbox"  TITLE="Company contact information.">Toolbox</a>
@@ -131,7 +132,7 @@
           </div>
         </div>
 
-        <button id="button_clear" NAME="" value="">Clear</button>
+        <button id="button_clear" NAME="" VALUE="yel"> <BR>Clear</button>
       </p>
     </div>
 
@@ -156,7 +157,7 @@
         <p>&nbsp;</p>
 
         <div class="dropdown">
-          <button id="button_add" class="large" NAME="" value="">+</button>
+          <button id="button_add" class="large" NAME="" VALUE="yel"> <BR>+</button>
           <div id="dropdownDiv_add" class="dropdown-content">
             <a id="dropdown_newCategory"  TITLE="Company contact information.">New Category</a>
             <a id="dropdown_loadCategory"  TITLE="Company contact information.">Standard Category</a>
@@ -165,14 +166,14 @@
           </div>
         </div>
 
-        <button id="button_remove" class="large" NAME="" value="">-</button>
+        <button id="button_remove" class="large" NAME="" VALUE="yel"> <BR>-</button>
 
-        <button id="button_up" class="large" NAME="" value="">&#8593;</button>
-        <button id="button_down" class="large" NAME="" value="">&#8595;</button>
+        <button id="button_up" class="large" NAME="" VALUE="yel"> <BR>&#8593;</button>
+        <button id="button_down" class="large" NAME="" VALUE="yel"> <BR>&#8595;</button>
 
         <br>
         <div class="dropdown">
-          <button id="button_editCategory" NAME="" value="">Edit Category</button>
+          <button id="button_editCategory" NAME="" VALUE="yel"> <BR>Edit Category</button>
           <div id="dropdownDiv_editCategory" class="dropdown-content">
             <a id='dropdown_name'  TITLE="Company contact information.">Name</a>
             <a id='dropdown_color'  TITLE="Company contact information.">Colour</a>
@@ -181,52 +182,52 @@
 
       </aside>
 
-      <button id="button_addShadow" style="display: none" NAME="" value="">Make Shadow</button>
-      <button id="button_removeShadow" style="display: none" NAME="" value="">Remove Shadow</button>
+      <button id="button_addShadow" style="display: none" NAME="" VALUE="yel"> <BR>Make Shadow</button>
+      <button id="button_removeShadow" style="display: none" NAME="" VALUE="yel"> <BR>Remove Shadow</button>
 
       <aside id="preload_div" style="display:none">
         <div id="preloadHelp">
           <p>Configure the options for your Blockly inject call.</p>
-          <button id="button_optionsHelp" NAME="" value="">Help</button>
-          <button class="small" id="button_standardOptions" NAME="" value="">Reset to Default</button>
+          <button id="button_optionsHelp" NAME="" VALUE="yel"> <BR>Help</button>
+          <button class="small" id="button_standardOptions" NAME="" VALUE="yel"> <BR>Reset to Default</button>
         </div>
         <div id="workspace_options">
-          <label><input type="checkbox" id="option_readOnly_checkbox" NAME="" value="">Read Only</label><br>
-          <label><input type="checkbox" id="option_grid_checkbox" NAME="" value="">Use Grid</label><br>
+          <label><input type="checkbox" id="option_readOnly_checkbox" NAME="" VALUE="yel"> <BR>Read Only</label><br>
+          <label><input type="checkbox" id="option_grid_checkbox" NAME="" VALUE="yel"> <BR>Use Grid</label><br>
           <div id="grid_options" style="display: none">
             <label>Spacing <input type="number" id="gridOption_spacing_number" style="width: 3em" NAME=""></label><br>
             <label>Length <input type="number" id="gridOption_length_number" style="width: 3em" NAME=""></label><br>
             <label>Colour <input type="text" id="gridOption_colour_text" style="width: 8em" NAME=""></label><br>
             <div id="readonly1">
-              <label><input type="checkbox" id="gridOption_snap_checkbox" NAME="" value="">Snap</label><br>
+              <label><input type="checkbox" id="gridOption_snap_checkbox" NAME="" VALUE="yel"> <BR>Snap</label><br>
             </div>
           </div>
           <label>Path to Blockly Media <input type="text" id="option_media_text" style="width: 90%" NAME=""></label><br>
-          <label><input type="checkbox" id="option_rtl_checkbox" NAME="" value="">Layout with RTL</label><br>
-          <label><input type="checkbox" id="option_scrollbars_checkbox" NAME="" value="">Scrollbars</label><br>
-          <label><input type="checkbox" id="option_zoom_checkbox" NAME="" value="">Zoom</label><br>
+          <label><input type="checkbox" id="option_rtl_checkbox" NAME="" VALUE="yel"> <BR>Layout with RTL</label><br>
+          <label><input type="checkbox" id="option_scrollbars_checkbox" NAME="" VALUE="yel"> <BR>Scrollbars</label><br>
+          <label><input type="checkbox" id="option_zoom_checkbox" NAME="" VALUE="yel"> <BR>Zoom</label><br>
           <div id="zoom_options" style="display: none">
-            <label><input type="checkbox" id="zoomOption_controls_checkbox" NAME="" value="">Zoom Controls</label><br>
-            <label><input type="checkbox" id="zoomOption_wheel_checkbox" NAME="" value="">Zoom Wheel</label><br>
+            <label><input type="checkbox" id="zoomOption_controls_checkbox" NAME="" VALUE="yel"> <BR>Zoom Controls</label><br>
+            <label><input type="checkbox" id="zoomOption_wheel_checkbox" NAME="" VALUE="yel"> <BR>Zoom Wheel</label><br>
             <label>Start Scale <input type="number" id="zoomOption_startScale_number" style="width: 4em"></label><br>
             <label>Max Scale <input type="number" id="zoomOption_maxScale_number" style="width: 4em"></label><br>
             <label>Min Scale <input type="number" id="zoomOption_minScale_number" style="width: 4em"></label><br>
             <label>Scale Speed <input type="number" id="zoomOption_scaleSpeed_number" style="width: 4em"></label><br>
           </div>
-          <label><input type="checkbox" id="option_css_checkbox" NAME="" value="">Use Blockly CSS</label><br>
+          <label><input type="checkbox" id="option_css_checkbox" NAME="" VALUE="yel"> <BR>Use Blockly CSS</label><br>
           <div id="readonly2">
-            <label><input type="checkbox" id="option_collapse_checkbox" NAME="" value="">Collapsible Blocks</label><br>
-            <label><input type="checkbox" id="option_comments_checkbox" NAME="" value="">Comments for Blocks</label><br>
-            <label><input type="checkbox" id="option_disable_checkbox" NAME="" value="">Disabled Blocks</label><br>
-            <label><input type="checkbox" id="option_infiniteBlocks_checkbox" NAME="" value="">Infinite Blocks</label><br>
+            <label><input type="checkbox" id="option_collapse_checkbox" NAME="" VALUE="yel"> <BR>Collapsible Blocks</label><br>
+            <label><input type="checkbox" id="option_comments_checkbox" NAME="" VALUE="yel"> <BR>Comments for Blocks</label><br>
+            <label><input type="checkbox" id="option_disable_checkbox" NAME="" VALUE="yel"> <BR>Disabled Blocks</label><br>
+            <label><input type="checkbox" id="option_infiniteBlocks_checkbox" NAME="" VALUE="yel"> <BR>Infinite Blocks</label><br>
             <div id="maxBlockNumber_option" style="display: none">
               <label>Max Blocks <input type="number" id="option_maxBlocks_number" style="width: 5em"></label><br>
             </div>
-            <label><input type="checkbox" id="option_horizontalLayout_checkbox" NAME="" value="">Horizontal Toolbox</label><br>
-            <label><input type="checkbox" id="option_toolboxPosition_checkbox" NAME="" value="">Toolbox End</label><br>
-            <label><input type="checkbox" id="option_oneBasedIndex_checkbox" NAME="" value="">One-based index</label><br>
-            <label><input type="checkbox" id="option_sounds_checkbox" NAME="" value="">Sounds<br>
-            <label><input type="checkbox" id="option_trashcan_checkbox" NAME="" value="">Trashcan</label><br>
+            <label><input type="checkbox" id="option_horizontalLayout_checkbox" NAME="" VALUE="yel"> <BR>Horizontal Toolbox</label><br>
+            <label><input type="checkbox" id="option_toolboxPosition_checkbox" NAME="" VALUE="yel"> <BR>Toolbox End</label><br>
+            <label><input type="checkbox" id="option_oneBasedIndex_checkbox" NAME="" VALUE="yel"> <BR>One-based index</label><br>
+            <label><input type="checkbox" id="option_sounds_checkbox" NAME="" VALUE="yel"> <BR>Sounds<br>
+            <label><input type="checkbox" id="option_trashcan_checkbox" NAME="" VALUE="yel"> <BR>Trashcan</label><br>
           </div>
         </div>
       </aside>
@@ -253,7 +254,7 @@
             <td id="blockLibraryContainer">
             <span>
               <div class="dropdown">
-                <button id="button_blockLib" NAME="" value="">Block Library</button>
+                <button id="button_blockLib" NAME="" VALUE="yel"> <BR>Block Library</button>
                 <div id="dropdownDiv_blockLib" class="dropdown-content">
                   <a id="createNewBlockButton"  TITLE="Company contact information.">Create New Block</a>
                 </div>
@@ -263,10 +264,10 @@
             </span>
             </td>
             <td id="blockLibraryControls">
-            <button id="saveToBlockLibraryButton" title="Save block to Block Library." NAME="" value="">
+            <button id="saveToBlockLibraryButton" title="Save block to Block Library." NAME="" VALUE="yel"> <BR>
               Save "block_type"
             </button>
-            <button id="removeBlockFromLibraryButton" title="Remove block from Block Library." NAME="" value="">
+            <button id="removeBlockFromLibraryButton" title="Remove block from Block Library." NAME="" VALUE="yel"> <BR>
               Delete "block_type"
             </button>
             </td>
@@ -285,10 +286,10 @@
               </h3>
             </td>
             <td id="buttonContainer">
-              <button id="linkButton" title="Save and link to blocks." NAME="" value="">
-                <img src="link.png" height="21" width="21" ALT="">
+              <button id="linkButton" title="Save and link to blocks." NAME="" VALUE="yel"> <BR>
+                <img src="link.png" height="21" width="21" ALT="Company Logo"/>
               </button>
-              <button id="clearBlockLibraryButton" title="Clear Block Library." NAME="" value="">
+              <button id="clearBlockLibraryButton" title="Clear Block Library." NAME="" VALUE="yel"> <BR>
                 <span>Clear Library</span>
               </button>
               <label for="files" class="buttonStyle">
@@ -296,7 +297,7 @@
               </label>
               <input id="files" type="file" name="files"
                   accept="application/xml">
-              <button id="localSaveButton" title="Save block library XML to a local file." NAME="" value="">
+              <button id="localSaveButton" title="Save block library XML to a local file." NAME="" VALUE="yel"> <BR>
                 <span>Download Block Library</span>
               </button>
             </td>
