@@ -1,14 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html>/
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="target-densitydpi=device-dpi, height=660, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Blockly Demo: Block Factory</title>
-  <script src="/storage.js"></script>
-  <script src="factory.js"></script>
-  <script src="../../blockly_compressed.js"></script>
-  <script src="../../msg/messages.js"></script>
-  <script src="blocks.js"></script>
+  
   <style>
     html, body {
       height: 100%;
@@ -88,34 +84,35 @@
       display: none;
     }
   </style>
-  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+ 
 </head>
 <body>
+  
   <table>
     <tr>
       <td width="50%" height="5%">
-        <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
-          <a href="../index.html">Demos</a> &gt; Block Factory</h1>
+        <h1><a href="https://developers.google.com/blockly/"  TITLE="Company contact information.">Blockly</a> &gt;
+          <a href="../index.html"  TITLE="Company contact information.">Demos</a> &gt; Block Factory</h1>
       </td>
       <td width="50%" height="5%">
         <table>
           <tr>
             <td style="vertical-align: bottom;">
               <h3>Preview:
-                <select id="direction">
+                <select id="direction" NAME="">
                   <option value="ltr">LTR</option>
                   <option value="rtl">RTL</option>
                 </select>
               </h3>
             </td>
             <td style="vertical-align: middle; text-align: right;">
-              <button id="linkButton" title="Save and link to blocks.">
-                <img src="link.png" height="21" width="21">
+              <button id="linkButton" title="Save and link to blocks." NAME="" value="">
+                <img src="link.png" height="21" width="21" ALT="">
               </button>
-              <button id="linkButton" title="Save and link to blocks.">
-                <img src="link.png" height="21" width="21">
+              <button id="linkButton" title="Save and link to blocks." NAME="" value="">
+                <img src="link.png" height="21" width="21" ALT="">
               </button>
-              <button id="helpButton" title="View documentation in new window.">
+              <button id="helpButton" title="View documentation in new window." NAME="" value="">
                 <span>Help</span>
               </button>
             </td>
@@ -138,7 +135,7 @@
           <tr>
             <td height="5%">
               <h3>Language code:
-                <select id="format">
+                <select id="format" NAME="">
                   <option value="JSON">JSON</option>
                   <option value="JavaScript">JavaScript</option>
                   <option value="Manual">Manual edit&hellip;</option>
@@ -149,13 +146,13 @@
           <tr>
             <td height="30%">
               <pre id="languagePre"></pre>
-              <textarea id="languageTA"></textarea>
+              <textarea id="languageTA" ROWS="5" NAME=""></textarea>
             </td>
           </tr>
           <tr>
             <td height="5%">
               <h3>Generator stub:
-                <select id="language">
+                <select id="language" NAME="">
                   <option value="JavaScript">JavaScript</option>
                   <option value="Python">Python</option>
                   <option value="PHP">PHP</option>
@@ -225,5 +222,11 @@
       <block type="colour_hue"><mutation colour="330"></mutation><field name="HUE">330</field></block>
     </category>
   </xml>
+  <script src="/storage.js"></script>
+  <script src="factory.js"></script>
+  <script src="../../blockly_compressed.js"></script>
+  <script src="../../msg/messages.js"></script>
+  <script src="blocks.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 </body>
 </html>

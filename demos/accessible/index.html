@@ -1,21 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html>/
 <html>
 <head>
   <meta charset="utf-8">
   <title>Accessible Blockly Demo</title>
-
-  <script src="../../accessible/libs/es6-shim.min.js"></script>
-  <script src="../../accessible/libs/angular2-polyfills.min.js"></script>
-  <script src="../../accessible/libs/Rx.umd.min.js"></script>
-  <script src="../../accessible/libs/angular2-all.umd.min.js"></script>
-
-  <!-- Load accessibleBlockly -->
-  <script src="../../blockly_accessible_compressed.js"></script>
-
-  <!-- Load Blockly -->
-  <script src="../../msg/js/en.js"></script>
-  <script src="../../accessible/messages.js"></script>
-  <script src="../../blocks_compressed.js"></script>
 
   <link rel="stylesheet" href="../../accessible/media/accessible.css">
   <style>
@@ -36,8 +23,8 @@
 </head>
 <body>
   <h1>
-    <a href="https://developers.google.com/blockly/">Blockly</a> &gt;
-    <a href="../index.html">Demos</a> &gt; Accessible Blockly
+    <a href="https://developers.google.com/blockly/"  TITLE="Company contact information.">Blockly</a> &gt;
+    <a href="../index.html"  TITLE="Company contact information.">Demos</a> &gt; Accessible Blockly
   </h1>
 
   <p>
@@ -58,17 +45,7 @@
 
   <blockly-app></blockly-app>
 
-  <script>
-    var ACCESSIBLE_GLOBALS = {
-      // Prefix of path to sound files.
-      mediaPathPrefix: '../../accessible/media/',
-      // Additional buttons for the sidebar.
-      customSidebarButtons: []
-    };
-    document.addEventListener('DOMContentLoaded', function() {
-      ng.platform.browser.bootstrap(blocklyApp.AppComponent);
-    });
-  </script>
+
 
   <xml id="blockly-toolbox-xml" style="display: none">
     <category name="Logic" colour="210">
@@ -325,5 +302,29 @@
     <category name="Variables" colour="330" custom="VARIABLE"></category>
   </xml>
 
+  <script src="../../accessible/libs/es6-shim.min.js"></script>
+  <script src="../../accessible/libs/angular2-polyfills.min.js"></script>
+  <script src="../../accessible/libs/Rx.umd.min.js"></script>
+  <script src="../../accessible/libs/angular2-all.umd.min.js"></script>
+
+  
+  <script src="../../blockly_accessible_compressed.js"></script>
+
+  
+  <script src="../../msg/js/en.js"></script>
+  <script src="../../accessible/messages.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  
+  <script>
+    var ACCESSIBLE_GLOBALS = {
+      // Prefix of path to sound files.
+      mediaPathPrefix: '../../accessible/media/',
+      // Additional buttons for the sidebar.
+      customSidebarButtons: []
+    };
+    document.addEventListener('DOMContentLoaded', function() {
+      ng.platform.browser.bootstrap(blocklyApp.AppComponent);
+    });
+  </script>
 </body>
 </html>
