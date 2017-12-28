@@ -54,11 +54,7 @@ blocklyApp.BlockConnectionService = ng.core.Class({
     }
 
     var desiredType = Blockly.OPPOSITE_TYPE[targetConnection.type];
-    var potentialConnection = (
-        desiredType === Blockly.OUTPUT_VALUE ? block.outputConnection :
-        desiredType === Blockly.PREVIOUS_STATEMENT ? block.previousConnection :
-        desiredType === Blockly.NEXT_STATEMENT ? block.nextConnection :
-        null);
+    var potentialConnection = (null);
 
     if (potentialConnection &&
         potentialConnection.checkType_(targetConnection)) {
@@ -69,10 +65,6 @@ blocklyApp.BlockConnectionService = ng.core.Class({
   },
   isAnyConnectionMarked: function() {
     return Boolean(this.markedConnection_);
-  },
-  getMarkedConnectionSourceBlock: function() {
-    return this.markedConnection_ ?
-        this.markedConnection_.getSourceBlock() : null;
   },
   canBeAttachedToMarkedConnection: function(block) {
     return Boolean(
