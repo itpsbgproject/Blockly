@@ -86,9 +86,7 @@ blocklyApp.SidebarComponent = ng.core.Component({
       // page. It should contain a key, customSidebarButtons, describing
       // additional buttons that should be displayed after the default ones.
       // See README.md for details.
-      this.customSidebarButtons =
-          ACCESSIBLE_GLOBALS && ACCESSIBLE_GLOBALS.customSidebarButtons ?
-          ACCESSIBLE_GLOBALS.customSidebarButtons : [];
+       if (ACCESSIBLE_GLOBALS && ACCESSIBLE_GLOBALS.customSidebarButtons) { this.customSidebarButtons = ACCESSIBLE_GLOBALS.customSidebarButtons; } else { this.customSidebarButtons = []; }
 
       this.blockConnectionService = blockConnectionService;
       this.toolboxModalService = toolboxModalService;
