@@ -1,15 +1,12 @@
-<!DOCTYPE html>
+<!DOCTYPE html>/
 <html>
 <head>
   <meta charset="utf-8">
   <title>Blockly Demo: Minimap</title>
-  <script src="../../blockly_compressed.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../msg/js/en.js"></script>
-  <script src="minimap.js"></script>
+  
   <style>
     body {
-      background-color: #fff;
+      background-color: #fff; 
       font-family: sans-serif;
     }
     h1 {
@@ -19,8 +16,9 @@
   </style>
 </head>
 <body>
-  <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
-    <a href="../index.html">Demos</a> &gt; Minimap</h1>
+ 
+  <h1><a href="https://developers.google.com/blockly/  "  TITLE="Company contact information.">Blockly</a> &gt;
+    <a href="../index.html"  TITLE="Company contact information.">Demos</a> &gt; Minimap</h1>
 
   <p>This is a simple demo showing how a minimap can be implemented.</p>
 
@@ -48,6 +46,23 @@
     <block type="variables_get"><field name="VAR">k</field></block>
   </xml>
 
+  
+  <style>
+    .minimap{
+      position: absolute;
+    }
+    .mapDragger{
+      cursor: move;
+      fill: rgb(0,0,255);
+      stroke-width: .5;
+      stroke: rgb(0,0,0);
+      fill-opacity: .1;
+    }
+  </style>
+ <script src="../../blockly_compressed.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  <script src="../../msg/js/en.js"></script>
+  <script src="minimap.js"></script>
   <script>
     // Inject master workspace.
     var masterWorkspace = Blockly.inject('masterDiv', {
@@ -72,18 +87,5 @@
     // Initialize the minimap.
     Minimap.init(masterWorkspace,minimapWorkspace);
   </script>
-  <style>
-    .minimap{
-      position: absolute;
-    }
-    .mapDragger{
-      cursor: move;
-      fill: rgb(0,0,255);
-      stroke-width: .5;
-      stroke: rgb(0,0,0);
-      fill-opacity: .1;
-    }
-  </style>
-
 </body>
 </html>

@@ -1,12 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html>/
 <html>
 <head>
   <meta charset="utf-8">
   <title>Blockly Demo: Generating JavaScript</title>
-  <script src="../../blockly_compressed.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../javascript_compressed.js"></script>
-  <script src="../../msg/js/en.js"></script>
+  
   <style>
     body {
       background-color: #fff;
@@ -19,16 +16,17 @@
   </style>
 </head>
 <body>
-  <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
-    <a href="../index.html">Demos</a> &gt; Generating JavaScript</h1>
+  
+  <h1><a href="https://developers.google.com/blockly/"  TITLE="Company contact information.">Blockly</a> &gt;
+    <a href="../index.html"  TITLE="Company contact information.">Demos</a> &gt; Generating JavaScript</h1>
 
   <p>This is a simple demo of generating code from blocks.</p>
 
-  <p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure/web/code-generators">Code Generators</a>&hellip;</p>
+  <p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure/web/code-generators"  TITLE="Company contact information.">Code Generators</a>&hellip;</p>
 
   <p>
-    <button onclick="showCode()">Show JavaScript</button>
-    <button onclick="runCode()">Run JavaScript</button>
+    <button onclick="showCode()" NAME="" value="">Show JavaScript</button>
+    <button onclick="runCode()" NAME="" value="">Run JavaScript</button>
   </p>
 
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
@@ -112,6 +110,11 @@
     </block>
   </xml>
 
+
+<script src="../../blockly_compressed.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  <script src="../../javascript_compressed.js"></script>
+  <script src="../../msg/js/en.js"></script>
   <script>
     var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: '../../media/',
@@ -140,6 +143,5 @@
       }
     }
   </script>
-
 </body>
 </html>

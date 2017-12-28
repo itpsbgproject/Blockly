@@ -1,12 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html>/
 <html>
 <head>
   <meta charset="utf-8">
   <title>Blockly Demo: Headless</title>
-  <script src="../../blockly_compressed.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../python_compressed.js"></script>
-  <script src="../../msg/js/en.js"></script>
+  
   <style>
     body {
       background-color: #fff;
@@ -26,8 +23,9 @@
   </style>
 </head>
 <body>
-  <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
-    <a href="../index.html">Demos</a> &gt; Headless</h1>
+ 
+  <h1><a href="https://developers.google.com/blockly/"  TITLE="Company contact information.">Blockly</a> &gt;
+    <a href="../index.html"  TITLE="Company contact information.">Demos</a> &gt; Headless</h1>
 
   <p>This is a simple demo of generating Python code from XML with no graphics.
   This might be useful for server-side code generation.</p>
@@ -35,7 +33,7 @@
   <table style="width: 100%">
     <tr>
       <td style="width:50%">
-        <textarea id="xml_input">
+        <textarea id="xml_input" NAME="" ROWS="5">
 <xml>
   <block type="controls_if" inline="false" x="20" y="20">
     <mutation else="1"></mutation>
@@ -89,13 +87,13 @@
       <td>
       </td>
       <td style="width:50%">
-        <textarea id="code_output" readonly></textarea>
+        <textarea id="code_output" readonly NAME="" ROWS="5"></textarea>
       </td>
     </tr>
   </table>
 
   <div style="text-align: center">
-    <button onclick="generate()">Generate Python &#10548;</button>
+    <button onclick="generate()" NAME="" value="">Generate Python &#10548;</button>
   </div>
 
   <script>
@@ -115,6 +113,9 @@
       document.getElementById('code_output').value = code;
     }
   </script>
-
+ <script src="../../blockly_compressed.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  <script src="../../python_compressed.js"></script>
+  <script src="../../msg/js/en.js"></script>
 </body>
 </html>

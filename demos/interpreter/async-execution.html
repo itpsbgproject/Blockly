@@ -1,14 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html>/
 <html>
 <head>
   <meta charset="utf-8">
   <title>Blockly Demo: Asynchronous Execution with JS Interpreter</title>
-  <script src="acorn_interpreter.js"></script>
-  <script src="../../blockly_compressed.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../javascript_compressed.js"></script>
-  <script src="../../msg/js/en.js"></script>
-  <script src="wait_block.js"></script>
+  
   <style>
     body {
       background-color: #fff;
@@ -21,22 +16,23 @@
   </style>
 </head>
 <body>
-  <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
-    <a href="../index.html">Demos</a> &gt; Asynchronous Execution with JS Interpreter</h1>
+ 
+  <h1><a href="https://developers.google.com/blockly/"  TITLE="Company contact information.">Blockly</a> &gt;
+    <a href="../index.html"  TITLE="Company contact information.">Demos</a> &gt; Asynchronous Execution with JS Interpreter</h1>
 
   <p>This is a demo of executing code asychronously (e.g., waiting for delays or user input) using the JavaScript interpreter.</p>
 
-  <p>&rarr; <a href="https://developers.google.com/blockly/guides/configure-blockly/web/running-javascript#js_interpreter">More info on running code with JS Interpreter</a></p>
+  <p>&rarr; <a href="https://developers.google.com/blockly/guides/configure-blockly/web/running-javascript#js_interpreter"  TITLE="Company contact information.">More info on running code with JS Interpreter</a></p>
 
   <p>
-    <button onclick="runCode()" id="runButton">Run JavaScript</button>
+    <button onclick="runCode()" id="runButton" NAME="" value="">Run JavaScript</button>
   </p>
 
   <div style="width: 100%">
     <div id="blocklyDiv"
         style="display: inline-block; height: 480px; width: 58%"></div>
-    <textarea id="output" disabled="disabled"
-        style="display: inline-block; height: 480px; width: 38%;">
+    <textarea id="output" disabled="disabled" ROWS="5"
+        style="display: inline-block; height: 480px; width: 38%;" NAME="">
     </textarea>
   </div>
 
@@ -149,7 +145,7 @@
     function initApi(interpreter, scope) {
       // Add an API function for the alert() block, generated for "text_print" blocks.
       var wrapper = function(text) {
-        text = text ? text.toString() : '';
+        text = (if (text) { text.toString() } else { ''; });
         outputArea.value = outputArea.value + '\n' + text;
       };
       interpreter.setProperty(scope, 'alert',
@@ -157,7 +153,7 @@
 
       // Add an API function for the prompt() block.
       var wrapper = function(text) {
-        text = text ? text.toString() : '';
+        text = (if (text) { text.toString() } else { ''; });
         return interpreter.createPrimitive(prompt(text));
       };
       interpreter.setProperty(scope, 'prompt',
@@ -168,7 +164,7 @@
 
       // Add an API function for highlighting blocks.
       var wrapper = function(id) {
-        id = id ? id.toString() : '';
+        id = (if (id) { id.toString() } else { '' });
         return interpreter.createPrimitive(highlightBlock(id));
       };
       interpreter.setProperty(scope, 'highlightBlock',
@@ -257,5 +253,11 @@
       }
     });
   </script>
+   <script src="acorn_interpreter.js"></script>
+  <script src="../../blockly_compressed.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  <script src="../../javascript_compressed.js"></script>
+  <script src="../../msg/js/en.js"></script>
+  <script src="wait_block.js"></script>
 </body>
 </html>

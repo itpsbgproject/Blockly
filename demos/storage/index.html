@@ -1,12 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html>/
 <html>
 <head>
   <meta charset="utf-8">
   <title>Blockly Demo: Cloud Storage</title>
-  <script src="/storage.js"></script>
-  <script src="../../blockly_compressed.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../msg/js/en.js"></script>
+  
   <style>
     body {
       background-color: #fff;
@@ -24,11 +21,10 @@
   </style>
 </head>
 <body>
-  <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
-    <a href="../index.html">Demos</a> &gt; Cloud Storage</h1>
-
-  <p>This is a simple demo of cloud storage using App Engine.</p>
-
+  <script src="/storage.js"></script>
+  <script src="../../blockly_compressed.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  <script src="../../msg/js/en.js"></script>
   <script>
     if ('BlocklyStorage' in window) {
       BlocklyStorage.HTTPREQUEST_ERROR = 'There was a problem with the request.\n';
@@ -40,11 +36,17 @@
       document.write('<p id="sorry">Sorry, cloud storage is not available.  This demo must be hosted on App Engine.</p>');
     }
   </script>
+  <h1><a href="https://developers.google.com/blockly/  TITLE="Company contact information.">Blockly</a> &gt;
+    <a href="../index.html"  TITLE="Company contact information.">Demos</a> &gt; Cloud Storage</h1>
 
-  <p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure-blockly/web/cloud-storage">Cloud Storage</a>&hellip;</p>
+  <p>This is a simple demo of cloud storage using App Engine.</p>
+
+  
+
+  <p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure-blockly/web/cloud-storage"  TITLE="Company contact information.">Cloud Storage</a>&hellip;</p>
 
   <p>
-    <button onclick="BlocklyStorage.link()">Save Blocks</button>
+    <button onclick="BlocklyStorage.link()" NAME="" value="">Save Blocks</button>
   </p>
 
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
