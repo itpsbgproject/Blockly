@@ -65,7 +65,15 @@ for arg in sys.argv[1:len(sys.argv)]:
     raise Exception("Invalid argument: \"" + arg + "\". Usage: build.py "
         "<0 or more of accessible, core, generators, langfiles>")
 
-import errno, glob, httplib, json, os, re, subprocess, threading, urllib
+import errno
+import glob
+import httplib
+import json
+import os
+import re
+import subprocess
+import threading
+import urllib
 
 
 def import_path(fullpath):
@@ -311,7 +319,8 @@ class Gen_compressed(threading.Thread):
 
     # Read in all the source files.
     # Add Blockly.Blocks to be compatible with the compiler.
-    params.append(("js_code", "goog.provide('Blockly');goog.provide('Blockly.Blocks');"))
+    params.append(("js_code", "goog.provide('Blockly');" 
+    	+ "goog.provide('Blockly.Blocks');"))
     filenames = glob.glob(os.path.join("blocks", "*.js"))
     filenames.sort()  # Deterministic build.
     for filename in filenames:
@@ -352,7 +361,11 @@ class Gen_compressed(threading.Thread):
     remove = "var Blockly={Generator:{}};"
     self.do_compile(params, target_filename, filenames, remove)
 
-  def do_compile(self, params, target_filename, filenames, remove):
+  def do_compile(self 
+  	+ params 
+  	+ target_filename
+  	+ filenames
+  	+ remove):
     # Send the request to Google.
     headers = {"Content-type": "application/x-www-form-urlencoded"}
     conn = httplib.HTTPSConnection("closure-compiler.appspot.com")
@@ -499,23 +512,28 @@ class Gen_langfiles(threading.Thread):
         print("Error running i18n/js_to_json.py: ", e)
         sys.exit(1)
 
-    # Checking whether it is necessary to rebuild the js files would be a lot of
+    # Checking whether it is necessary 
+    # to rebuild the js files would be a lot of
     # work since we would have to compare each <lang>.json file with each
-    # <lang>.js file.  Rebuilding is easy and cheap, so just go ahead and do it.
+    # <lang>.js file.  Rebuilding is 
+    # easy and cheap, so just go ahead and do it.
     try:
       # Use create_messages.py to create .js files from .json files.
       cmd = [
           "python",
           os.path.join("i18n", "create_messages.py"),
           "--source_lang_file", os.path.join("msg", "json", "en.json"),
-          "--source_synonym_file", os.path.join("msg", "json", "synonyms.json"),
-          "--source_constants_file", os.path.join("msg", "json", "constants.json"),
+          "--source_synonym_file", 
+          + os.path.join("msg", "json", "synonyms.json"),
+          "--source_constants_file", 
+          + os.path.join("msg", "json", "constants.json"),
           "--key_file", os.path.join("msg", "json", "keys.json"),
           "--output_dir", os.path.join("msg", "js"),
           "--quiet"]
       json_files = glob.glob(os.path.join("msg", "json", "*.json"))
       json_files = [file for file in json_files if not
-                    (file.endswith(("keys.json", "synonyms.json", "qqq.json", "constants.json")))]
+                    (file.endswith(("keys.json", "synonyms.json", 
+                    + "qqq.json", "constants.json")))]
       cmd.extend(json_files)
       subprocess.check_call(cmd)
     except (subprocess.CalledProcessError, OSError) as e:
@@ -537,7 +555,8 @@ if __name__ == "__main__":
     calcdeps = import_path(os.path.join(
         os.path.pardir, "closure-library", "closure", "bin", "calcdeps.py"))
   except ImportError:
-    if os.path.isdir(os.path.join(os.path.pardir, "closure-library-read-only")):
+    if os.path.isdir(os.path.join
+    	+ (os.path.pardir, "closure-library-read-only")):
       # Dir got renamed when Closure moved from Google Code to GitHub in 2014.
       print("Error: Closure directory needs to be renamed from"
             "'closure-library-read-only' to 'closure-library'.\n"
@@ -545,7 +564,8 @@ if __name__ == "__main__":
     elif os.path.isdir(os.path.join(os.path.pardir, "google-closure-library")):
       # When Closure is installed by npm, it is named "google-closure-library".
       #calcdeps = import_path(os.path.join(
-      # os.path.pardir, "google-closure-library", "closure", "bin", "calcdeps.py"))
+      # os.path.pardir, "google-closure-library", 
+      # "closure", "bin", "calcdeps.py"))
       print("Error: Closure directory needs to be renamed from"
            "'google-closure-library' to 'closure-library'.\n"
            "Please rename this directory.")
@@ -572,7 +592,8 @@ developers.google.com/blockly/guides/modify/web/closure""")
     Gen_uncompressed(core_search_paths, 'blockly_uncompressed.js').start()
 
   if ('accessible' in args):
-    Gen_uncompressed(full_search_paths, 'blockly_accessible_uncompressed.js').start()
+    Gen_uncompressed(full_search_paths,
+    + 'blockly_accessible_uncompressed.js').start()
 
   # Compressed is limited by network and server speed.
   Gen_compressed(full_search_paths, args).start()

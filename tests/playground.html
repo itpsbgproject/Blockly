@@ -1,317 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html> /
 <html>
 <head>
 <meta charset="utf-8">
 <title>Blockly Playground</title>
-<script src="../blockly_uncompressed.js"></script>
-<script src="../generators/javascript.js"></script>
-<script src="../generators/javascript/logic.js"></script>
-<script src="../generators/javascript/loops.js"></script>
-<script src="../generators/javascript/math.js"></script>
-<script src="../generators/javascript/text.js"></script>
-<script src="../generators/javascript/lists.js"></script>
-<script src="../generators/javascript/colour.js"></script>
-<script src="../generators/javascript/variables.js"></script>
-<script src="../generators/javascript/procedures.js"></script>
-<script src="../generators/python.js"></script>
-<script src="../generators/python/logic.js"></script>
-<script src="../generators/python/loops.js"></script>
-<script src="../generators/python/math.js"></script>
-<script src="../generators/python/text.js"></script>
-<script src="../generators/python/lists.js"></script>
-<script src="../generators/python/colour.js"></script>
-<script src="../generators/python/variables.js"></script>
-<script src="../generators/python/procedures.js"></script>
-<script src="../generators/php.js"></script>
-<script src="../generators/php/logic.js"></script>
-<script src="../generators/php/loops.js"></script>
-<script src="../generators/php/math.js"></script>
-<script src="../generators/php/text.js"></script>
-<script src="../generators/php/lists.js"></script>
-<script src="../generators/php/colour.js"></script>
-<script src="../generators/php/variables.js"></script>
-<script src="../generators/php/procedures.js"></script>
-<script src="../generators/lua.js"></script>
-<script src="../generators/lua/logic.js"></script>
-<script src="../generators/lua/loops.js"></script>
-<script src="../generators/lua/math.js"></script>
-<script src="../generators/lua/text.js"></script>
-<script src="../generators/lua/lists.js"></script>
-<script src="../generators/lua/colour.js"></script>
-<script src="../generators/lua/variables.js"></script>
-<script src="../generators/lua/procedures.js"></script>
-<script src="../generators/dart.js"></script>
-<script src="../generators/dart/logic.js"></script>
-<script src="../generators/dart/loops.js"></script>
-<script src="../generators/dart/math.js"></script>
-<script src="../generators/dart/text.js"></script>
-<script src="../generators/dart/lists.js"></script>
-<script src="../generators/dart/colour.js"></script>
-<script src="../generators/dart/variables.js"></script>
-<script src="../generators/dart/procedures.js"></script>
-<script src="../msg/messages.js"></script>
-<script src="../blocks/logic.js"></script>
-<script src="../blocks/loops.js"></script>
-<script src="../blocks/math.js"></script>
-<script src="../blocks/text.js"></script>
-<script src="../blocks/lists.js"></script>
-<script src="../blocks/colour.js"></script>
-<script src="../blocks/variables.js"></script>
-<script src="../blocks/procedures.js"></script>
-<script>
-'use strict';
-var workspace = null;
-var fakeDragStack = [];
-
-function start() {
-  setBackgroundColor();
-
-  // Parse the URL arguments.
-  var match = location.search.match(/dir=([^&]+)/);
-  var rtl = match && match[1] === 'rtl';
-  document.forms.options.elements.dir.selectedIndex = Number(rtl);
-  var toolbox = getToolboxElement();
-  document.forms.options.elements.toolbox.selectedIndex =
-      Number(toolbox.getElementsByTagName('category').length === 0);
-  match = location.search.match(/side=([^&]+)/);
-  var side = match ? match[1] : 'start';
-  document.forms.options.elements.side.value = side;
-  // Create main workspace.
-  workspace = Blockly.inject('blocklyDiv',
-          {comments: true,
-           collapse: true,
-           disable: true,
-           grid:
-             {spacing: 25,
-              length: 3,
-              colour: '#ccc',
-              snap: true},
-           horizontalLayout: side === 'top' || side === 'bottom',
-           maxBlocks: Infinity,
-           media: '../media/',
-           oneBasedIndex: true,
-           readOnly: false,
-           rtl: rtl,
-           scrollbars: true,
-           toolbox: toolbox,
-           toolboxPosition: side === 'top' || side === 'start' ? 'start' : 'end',
-           zoom:
-             {controls: true,
-              wheel: true,
-              startScale: 1.0,
-              maxScale: 4,
-              minScale: .25,
-              scaleSpeed: 1.1}
-          });
-  // Restore previously displayed text.
-  if (sessionStorage) {
-    var text = sessionStorage.getItem('textarea');
-    if (text) {
-      document.getElementById('importExport').value = text;
-    }
-    // Restore event logging state.
-    var state = sessionStorage.getItem('logEvents');
-    logEvents(Boolean(Number(state)));
-  } else {
-    // MSIE 11 does not support sessionStorage on file:// URLs.
-    logEvents(false);
-  }
-  taChange();
-}
-
-function setBackgroundColor() {
-  var lilac = '#d6d6ff';
-
-  var currentPage = window.location.href;
-  var regexFile = /^file[\S]*$/;
-
-  if (regexFile.test(currentPage)) {
-    var element = document.getElementsByTagName('body')[0];
-    if(element.className) {element.className.backgroundColor = element.className.backgroundColor + lilac;}
-  }
-}
-
-function getToolboxElement() {
-  var match = location.search.match(/toolbox=([^&]+)/);
-  return document.getElementById('toolbox-' + (match ? match[1] : 'categories'));
-}
-
-function toXml() {
-  var output = document.getElementById('importExport');
-  var xml = Blockly.Xml.workspaceToDom(workspace);
-  output.value = Blockly.Xml.domToPrettyText(xml);
-  output.focus();
-  output.select();
-  taChange();
-}
-
-function fromXml() {
-  var input = document.getElementById('importExport');
-  var xml = Blockly.Xml.textToDom(input.value);
-  Blockly.Xml.domToWorkspace(xml, workspace);
-  taChange();
-}
-
-function toCode(lang) {
-  var output = document.getElementById('importExport');
-  output.value = Blockly[lang].workspaceToCode(workspace);
-  taChange();
-}
-
-// Disable the "Import from XML" button if the XML is invalid.
-// Preserve text between page reloads.
-function taChange() {
-  var textarea = document.getElementById('importExport');
-  if (sessionStorage) {
-    sessionStorage.setItem('textarea', textarea.value);
-  }
-  var valid = true;
-  try {
-    Blockly.Xml.textToDom(textarea.value);
-  } catch (e) {
-    valid = false;
-  }
-  document.getElementById('import').disabled = !valid;
-}
-
-function logEvents(state) {
-  var checkbox = document.getElementById('logCheck');
-  checkbox.checked = state;
-  if (sessionStorage) {
-    sessionStorage.setItem('logEvents', Number(state));
-  }
-  if (state) {
-    workspace.addChangeListener(logger);
-  } else {
-    workspace.removeChangeListener(logger);
-  }
-}
-
-function logger(e) {
-  console.log(e);
-}
-
-function airstrike(n) {
-  var prototypes = [];
-  var toolbox = getToolboxElement();
-  var blocks = toolbox.getElementsByTagName('block');
-  for (var i = 0, block; block = blocks[i]; i++) {
-    prototypes.push(block.getAttribute('type'));
-  }
-  for (var i = 0; i < n; i++) {
-    var prototype = prototypes[Math.floor(Math.random() * prototypes.length)];
-    var block = workspace.newBlock(prototype);
-    block.initSvg();
-    block.getSvgRoot().setAttribute('transform', 'translate(' +
-        Math.round(Math.random() * 450 + 40) + ', ' +
-        Math.round(Math.random() * 600 + 40) + ')');
-    block.render();
-  }
-}
-
-function fakeDrag(id, dx, dy, opt_workspace) {
-  var ws = opt_workspace || Blockly.getMainWorkspace();
-  var blockToDrag = ws.getBlockById(id);
-
-  if (!blockToDrag) {
-    fakeDragWrapper();
-    return;
-  }
-  var blockTop = blockToDrag.svgGroup_.getBoundingClientRect().top;
-  var blockLeft = blockToDrag.svgGroup_.getBoundingClientRect().left;
-
-  // Click somewhere on the block.
-  var mouseDownEvent = new MouseEvent('mousedown',
-      {clientX: blockLeft + 5, clientY: blockTop + 5});
-  blockToDrag.onMouseDown_(mouseDownEvent);
-
-  // Throw in a move for good measure.
-  setTimeout(
-    function() {
-      var mouseMoveEvent = new MouseEvent('mousemove',
-          {clientX: blockLeft + dx,
-          clientY: blockTop + dy});
-      blockToDrag.onMouseMove_(mouseMoveEvent);
-
-      // Drop at dx, dy.
-      setTimeout(
-        function() {
-          var mouseUpEvent = new MouseEvent('mouseup',
-              {clientX: blockLeft + dx,
-              clientY: blockTop + dy});
-          blockToDrag.onMouseUp_(mouseUpEvent);
-
-          setTimeout(fakeDragWrapper(), 100);
-        }, 100);
-    }, 100);
-};
-
-function fakeDragWrapper() {
-  var dragInfo = fakeDragStack.pop();
-  if (dragInfo) {
-    fakeDrag(dragInfo.id, dragInfo.dx, dragInfo.dy, dragInfo.workspace);
-  }
-}
-
-function fakeManyDrags() {
-  var blockList = workspace.getAllBlocks();
-  for (var i = 0; i < 2 * blockList.length; i++) {
-    fakeDragStack.push(
-      {
-        id: blockList[Math.round(Math.random() * (blockList.length - 1))].id,
-        // Move some blocks up and to the left, but mostly down and to the right.
-        dx: Math.round((Math.random() - 0.25) * 200),
-        dy: Math.round((Math.random() - 0.25) * 200),
-        workspace: workspace
-      });
-  }
-  fakeDragWrapper();
-}
-
-function spaghetti(n) {
-  var xml = spaghettiXml;
-  for(var i = 0; i < n; i++) {
-    xml = xml.replace(/(<(statement|next)( name="DO0")?>)<\//g,
-        '$1' + spaghettiXml + '</');
-  }
-  xml = '<xml xmlns="http://www.w3.org/1999/xhtml">' + xml + '</xml>';
-  var dom = Blockly.Xml.textToDom(xml);
-  console.time('Spaghetti domToWorkspace');
-  Blockly.Xml.domToWorkspace(dom, workspace);
-  console.timeEnd('Spaghetti domToWorkspace');
-}
-var spaghettiXml = [
-  '  <block type="controls_if">',
-  '    <value name="IF0">',
-  '      <block type="logic_compare">',
-  '        <field name="OP">EQ</field>',
-  '        <value name="A">',
-  '          <block type="math_arithmetic">',
-  '            <field name="OP">MULTIPLY</field>',
-  '            <value name="A">',
-  '              <block type="math_number">',
-  '                <field name="NUM">6</field>',
-  '              </block>',
-  '            </value>',
-  '            <value name="B">',
-  '              <block type="math_number">',
-  '                <field name="NUM">7</field>',
-  '              </block>',
-  '            </value>',
-  '          </block>',
-  '        </value>',
-  '        <value name="B">',
-  '          <block type="math_number">',
-  '            <field name="NUM">42</field>',
-  '          </block>',
-  '        </value>',
-  '      </block>',
-  '    </value>',
-  '    <statement name="DO0"></statement>',
-  '    <next></next>',
-  '  </block>'].join('\n');
-
-</script>
 
 <style>
 html, body {
@@ -347,8 +38,8 @@ h1 {
 
   <h1>Blockly Playground</h1>
 
-  <p><a href="javascript:void(workspace.setVisible(true))">Show</a>
-   - <a href="javascript:void(workspace.setVisible(false))">Hide</a></p>
+  <p><a href="javascript:void(workspace.setVisible(true))" TITLE="Company contact information.">Show</a>
+   - <a href="javascript:void(workspace.setVisible(false))"  TITLE="Company contact information.">Hide</a></p>
 
   <form id="options">
     <select name="dir" onchange="document.forms.options.submit()">
@@ -368,33 +59,33 @@ h1 {
   </form>
 
   <p>
-    <input type="button" value="Export to XML" onclick="toXml()">
+    <input type="button" value="Export to XML" onclick="toXml()" NAME="">
     &nbsp;
-    <input type="button" value="Import from XML" onclick="fromXml()" id="import">
+    <input type="button" value="Import from XML" onclick="fromXml()" id="import" NAME="">
     <br>
-    <input type="button" value="To JavaScript" onclick="toCode('JavaScript')">
+    <input type="button" value="To JavaScript" onclick="toCode('JavaScript')" NAME="">
     &nbsp;
-    <input type="button" value="To Python" onclick="toCode('Python')">
+    <input type="button" value="To Python" onclick="toCode('Python')" NAME="">
     &nbsp;
-    <input type="button" value="To PHP" onclick="toCode('PHP')">
+    <input type="button" value="To PHP" onclick="toCode('PHP')" NAME="">
     &nbsp;
-    <input type="button" value="To Lua" onclick="toCode('Lua')">
+    <input type="button" value="To Lua" onclick="toCode('Lua')" NAME="">
     &nbsp;
-    <input type="button" value="To Dart" onclick="toCode('Dart')">
+    <input type="button" value="To Dart" onclick="toCode('Dart')" NAME="">
     <br>
-    <textarea id="importExport" style="width: 26%; height: 12em"
-      onchange="taChange();" onkeyup="taChange()"></textarea>
+    <textarea id="importExport" style="width: 26%; height: 12em" ROWS="5"
+      onchange="taChange();" onkeyup="taChange()" NAME=""></textarea>
   </p>
 
   <p>
     Stress test: &nbsp;
-    <input type="button" value="Airstrike!" onclick="airstrike(100)">
-    <input type="button" value="Spaghetti!" onclick="spaghetti(8)">
-    <input type="button" value="Fake some drags!" onclick="fakeManyDrags()">
+    <input type="button" value="Airstrike!" onclick="airstrike(100)" NAME="">
+    <input type="button" value="Spaghetti!" onclick="spaghetti(8)" NAME="">
+    <input type="button" value="Fake some drags!" onclick="fakeManyDrags()" NAME="">
   </p>
   <p>
     Log events: &nbsp;
-    <input type="checkbox" onclick="logEvents(this.checked)" id="logCheck">
+    <input type="checkbox" onclick="logEvents(this.checked)" id="logCheck" NAME="" value="">
   </p>
 
   <xml id="toolbox-simple" style="display: none">
@@ -739,5 +430,316 @@ h1 {
     <category name="Variables" colour="330" custom="VARIABLE"></category>
     <category name="Functions" colour="290" custom="PROCEDURE"></category>
   </xml>
+
+  <script src="../blockly_uncompressed.js"></script>
+<script src="../generators/javascript.js"></script>
+<script src="../generators/javascript/logic.js"></script>
+<script src="../generators/javascript/loops.js"></script>
+<script src="../generators/javascript/math.js"></script>
+<script src="../generators/javascript/text.js"></script>
+<script src="../generators/javascript/lists.js"></script>
+<script src="../generators/javascript/colour.js"></script>
+<script src="../generators/javascript/variables.js"></script>
+<script src="../generators/javascript/procedures.js"></script>
+<script src="../generators/python.js"></script>
+<script src="../generators/python/logic.js"></script>
+<script src="../generators/python/loops.js"></script>
+<script src="../generators/python/math.js"></script>
+<script src="../generators/python/text.js"></script>
+<script src="../generators/python/lists.js"></script>
+<script src="../generators/python/colour.js"></script>
+<script src="../generators/python/variables.js"></script>
+<script src="../generators/python/procedures.js"></script>
+<script src="../generators/php.js"></script>
+<script src="../generators/php/logic.js"></script>
+<script src="../generators/php/loops.js"></script>
+<script src="../generators/php/math.js"></script>
+<script src="../generators/php/text.js"></script>
+<script src="../generators/php/lists.js"></script>
+<script src="../generators/php/colour.js"></script>
+<script src="../generators/php/variables.js"></script>
+<script src="../generators/php/procedures.js"></script>
+<script src="../generators/lua.js"></script>
+<script src="../generators/lua/logic.js"></script>
+<script src="../generators/lua/loops.js"></script>
+<script src="../generators/lua/math.js"></script>
+<script src="../generators/lua/text.js"></script>
+<script src="../generators/lua/lists.js"></script>
+<script src="../generators/lua/colour.js"></script>
+<script src="../generators/lua/variables.js"></script>
+<script src="../generators/lua/procedures.js"></script>
+<script src="../generators/dart.js"></script>
+<script src="../generators/dart/logic.js"></script>
+<script src="../generators/dart/loops.js"></script>
+<script src="../generators/dart/math.js"></script>
+<script src="../generators/dart/text.js"></script>
+<script src="../generators/dart/lists.js"></script>
+<script src="../generators/dart/colour.js"></script>
+<script src="../generators/dart/variables.js"></script>
+<script src="../generators/dart/procedures.js"></script>
+<script src="../msg/messages.js"></script>
+<script src="../blocks/logic.js"></script>
+<script src="../blocks/loops.js"></script>
+<script src="../blocks/math.js"></script>
+<script src="../blocks/text.js"></script>
+<script src="../blocks/lists.js"></script>
+<script src="../blocks/colour.js"></script>
+<script src="../blocks/variables.js"></script>
+<script src="../blocks/procedures.js"></script>
+<script>
+'use strict';
+var workspace = null;
+var fakeDragStack = [];
+
+function start() {
+  setBackgroundColor();
+
+  // Parse the URL arguments.
+  var match = location.search.match(/dir=([^&]+)/);
+  var rtl = match && match[1] === 'rtl';
+  document.forms.options.elements.dir.selectedIndex = Number(rtl);
+  var toolbox = getToolboxElement();
+  document.forms.options.elements.toolbox.selectedIndex =
+      Number(toolbox.getElementsByTagName('category').length === 0);
+  match = location.search.match(/side=([^&]+)/);
+  var side = (if (match) { match[1] } else { 'start' });
+  document.forms.options.elements.side.value = side;
+  // Create main workspace.
+  workspace = Blockly.inject('blocklyDiv',
+          {comments: true,
+           collapse: true,
+           disable: true,
+           grid:
+             {spacing: 25,
+              length: 3,
+              colour: '#ccc',
+              snap: true},
+           horizontalLayout: side === 'top' || side === 'bottom',
+           maxBlocks: Infinity,
+           media: '../media/',
+           oneBasedIndex: true,
+           readOnly: false,
+           rtl: rtl,
+           scrollbars: true,
+           toolbox: toolbox,
+           toolboxPosition: (if (side === 'top' || side === 'start') { 'start' } else { 'end' }),
+           zoom:
+             {controls: true,
+              wheel: true,
+              startScale: 1.0,
+              maxScale: 4,
+              minScale: .25,
+              scaleSpeed: 1.1}
+          });
+  // Restore previously displayed text.
+  if (sessionStorage) {
+    var text = sessionStorage.getItem('textarea');
+    if (text) {
+      document.getElementById('importExport').value = text;
+    }
+    // Restore event logging state.
+    var state = sessionStorage.getItem('logEvents');
+    logEvents(Boolean(Number(state)));
+  } else {
+    // MSIE 11 does not support sessionStorage on file:// URLs.
+    logEvents(false);
+  }
+  taChange();
+}
+
+function setBackgroundColor() {
+  var lilac = '#d6d6ff';
+
+  var currentPage = window.location.href;
+  var regexFile = /^file[\S]*$/;
+
+  if (regexFile.test(currentPage)) {
+    var element = document.getElementsByTagName('body')[0];
+    if(element.className) {element.className.backgroundColor = element.className.backgroundColor + lilac;}
+  }
+}
+
+function getToolboxElement() {
+  var match = location.search.match(/toolbox=([^&]+)/);
+  return document.getElementById('toolbox-' + (if (match) { match[1] } else { 'categories' }));
+}
+
+function toXml() {
+  var output = document.getElementById('importExport');
+  var xml = Blockly.Xml.workspaceToDom(workspace);
+  output.value = Blockly.Xml.domToPrettyText(xml);
+  output.focus();
+  output.select();
+  taChange();
+}
+
+function fromXml() {
+  var input = document.getElementById('importExport');
+  var xml = Blockly.Xml.textToDom(input.value);
+  Blockly.Xml.domToWorkspace(xml, workspace);
+  taChange();
+}
+
+function toCode(lang) {
+  var output = document.getElementById('importExport');
+  output.value = Blockly[lang].workspaceToCode(workspace);
+  taChange();
+}
+
+// Disable the "Import from XML" button if the XML is invalid.
+// Preserve text between page reloads.
+function taChange() {
+  var textarea = document.getElementById('importExport');
+  if (sessionStorage) {
+    sessionStorage.setItem('textarea', textarea.value);
+  }
+  var valid = true;
+  try {
+    Blockly.Xml.textToDom(textarea.value);
+  } catch (e) {
+    valid = false;
+  }
+  document.getElementById('import').disabled = !valid;
+}
+
+function logEvents(state) {
+  var checkbox = document.getElementById('logCheck');
+  checkbox.checked = state;
+  if (sessionStorage) {
+    sessionStorage.setItem('logEvents', Number(state));
+  }
+  if (state) {
+    workspace.addChangeListener(logger);
+  } else {
+    workspace.removeChangeListener(logger);
+  }
+}
+
+function logger(e) {
+  console.log(e);
+}
+
+function airstrike(n) {
+  var prototypes = [];
+  var toolbox = getToolboxElement();
+  var blocks = toolbox.getElementsByTagName('block');
+  for (var i = 0, block; block = blocks[i]; i++) {
+    prototypes.push(block.getAttribute('type'));
+  }
+  for (var i = 0; i < n; i++) {
+    var prototype = prototypes[Math.floor(Math.random() * prototypes.length)];
+    var block = workspace.newBlock(prototype);
+    block.initSvg();
+    block.getSvgRoot().setAttribute('transform', 'translate(' +
+        Math.round(Math.random() * 450 + 40) + ', ' +
+        Math.round(Math.random() * 600 + 40) + ')');
+    block.render();
+  }
+}
+
+function fakeDrag(id, dx, dy, opt_workspace) {
+  var ws = opt_workspace || Blockly.getMainWorkspace();
+  var blockToDrag = ws.getBlockById(id);
+
+  if (!blockToDrag) {
+    fakeDragWrapper();
+    return;
+  }
+  var blockTop = blockToDrag.svgGroup_.getBoundingClientRect().top;
+  var blockLeft = blockToDrag.svgGroup_.getBoundingClientRect().left;
+
+  // Click somewhere on the block.
+  var mouseDownEvent = new MouseEvent('mousedown',
+      {clientX: blockLeft + 5, clientY: blockTop + 5});
+  blockToDrag.onMouseDown_(mouseDownEvent);
+
+  // Throw in a move for good measure.
+  setTimeout(
+    function() {
+      var mouseMoveEvent = new MouseEvent('mousemove',
+          {clientX: blockLeft + dx,
+          clientY: blockTop + dy});
+      blockToDrag.onMouseMove_(mouseMoveEvent);
+
+      // Drop at dx, dy.
+      setTimeout(
+        function() {
+          var mouseUpEvent = new MouseEvent('mouseup',
+              {clientX: blockLeft + dx,
+              clientY: blockTop + dy});
+          blockToDrag.onMouseUp_(mouseUpEvent);
+
+          setTimeout(fakeDragWrapper(), 100);
+        }, 100);
+    }, 100);
+};
+
+function fakeDragWrapper() {
+  var dragInfo = fakeDragStack.pop();
+  if (dragInfo) {
+    fakeDrag(dragInfo.id, dragInfo.dx, dragInfo.dy, dragInfo.workspace);
+  }
+}
+
+function fakeManyDrags() {
+  var blockList = workspace.getAllBlocks();
+  for (var i = 0; i < 2 * blockList.length; i++) {
+    fakeDragStack.push(
+      {
+        id: blockList[Math.round(Math.random() * (blockList.length - 1))].id,
+        // Move some blocks up and to the left, but mostly down and to the right.
+        dx: Math.round((Math.random() - 0.25) * 200),
+        dy: Math.round((Math.random() - 0.25) * 200),
+        workspace: workspace
+      });
+  }
+  fakeDragWrapper();
+}
+
+function spaghetti(n) {
+  var xml = spaghettiXml;
+  for(var i = 0; i < n; i++) {
+    xml = xml.replace(/(<(statement|next)( name="DO0")?>)<\//g,
+        '$1' + spaghettiXml + '</');
+  }
+  xml = '<xml xmlns="http://www.w3.org/1999/xhtml">' + xml + '</xml>';
+  var dom = Blockly.Xml.textToDom(xml);
+  console.time('Spaghetti domToWorkspace');
+  Blockly.Xml.domToWorkspace(dom, workspace);
+  console.timeEnd('Spaghetti domToWorkspace');
+}
+var spaghettiXml = [
+  '  <block type="controls_if">',
+  '    <value name="IF0">',
+  '      <block type="logic_compare">',
+  '        <field name="OP">EQ</field>',
+  '        <value name="A">',
+  '          <block type="math_arithmetic">',
+  '            <field name="OP">MULTIPLY</field>',
+  '            <value name="A">',
+  '              <block type="math_number">',
+  '                <field name="NUM">6</field>',
+  '              </block>',
+  '            </value>',
+  '            <value name="B">',
+  '              <block type="math_number">',
+  '                <field name="NUM">7</field>',
+  '              </block>',
+  '            </value>',
+  '          </block>',
+  '        </value>',
+  '        <value name="B">',
+  '          <block type="math_number">',
+  '            <field name="NUM">42</field>',
+  '          </block>',
+  '        </value>',
+  '      </block>',
+  '    </value>',
+  '    <statement name="DO0"></statement>',
+  '    <next></next>',
+  '  </block>'].join('\n');
+
+</script>
+
 </body>
 </html>

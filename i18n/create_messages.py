@@ -88,11 +88,13 @@ def main():
   # Read in synonyms file, which must be output in every language.
   synonym_defs = read_json_file(os.path.join(
       os.curdir, args.source_synonym_file))
-  synonym_text = '\n'.join([u'/** @export */ Blockly.Msg.{0} = Blockly.Msg.{1};'
+  synonym_text = '\n'.join( 
+    + [u'/** @export */ Blockly.Msg.{0} = Blockly.Msg.{1};'
       .format(key, synonym_defs[key]) for key in synonym_defs])
 
   # Read in constants file, which must be output in every language.
-  constants_text = load_constants(os.path.join(os.curdir, args.source_constants_file))
+  constants_text = load_constants(os.path.join 
+    + (os.curdir, args.source_constants_file))
 
   # Create each output file.
   for arg_file in args.files:

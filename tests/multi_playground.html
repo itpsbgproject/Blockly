@@ -1,72 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html> /
 <html>
 <head>
 <meta charset="utf-8">
 <title>Multi-toolbox Playground</title>
-<script src="../blockly_uncompressed.js"></script>
-<script src="../msg/messages.js"></script>
-<script src="../blocks/logic.js"></script>
-<script src="../blocks/loops.js"></script>
-<script src="../blocks/math.js"></script>
-<script src="../blocks/text.js"></script>
-<script src="../blocks/lists.js"></script>
-<script src="../blocks/colour.js"></script>
-<script src="../blocks/variables.js"></script>
-<script src="../blocks/procedures.js"></script>
-<script>
-'use strict';
-var options = {
-  comments: true,
-  collapse: true,
-  disable: true,
-  maxBlocks: Infinity,
-  media: '../media/',
-  oneBasedIndex: true,
-  readOnly: false,
-  //rtl: false,
-  scrollbars: true,
-  trashcan: true,
-  //toolbox: null,
-  //horizontalLayout: false,
-  //toolboxPosition: 'start',
-  zoom: {
-    controls: true,
-    wheel: false,
-    startScale: 1.0,
-    maxScale: 4,
-    minScale: 0.25,
-    scaleSpeed: 1.1
-  }
-};
 
-function start() {
-  var match = location.search.match(/toolbox=([^&]+)/);
-  var toolbox =
-      document.getElementById('toolbox-' + (match ? match[1] : 'categories'));
-  document.forms.options.elements.toolbox.selectedIndex =
-      Number(toolbox.getElementsByTagName('category').length === 0);
-  startBlocklyInstance('VertStartLTR', false, false, 'start', toolbox);
-  startBlocklyInstance('VertStartRTL', true, false, 'start', toolbox);
-
-  startBlocklyInstance('VertEndLTR', false, false, 'end', toolbox);
-  startBlocklyInstance('VertEndRTL', true, false, 'end', toolbox);
-
-  startBlocklyInstance('HorizontalStartLTR', false, true, 'start', toolbox);
-  startBlocklyInstance('HorizontalStartRTL', true, true, 'start', toolbox);
-
-  startBlocklyInstance('HorizontalEndLTR', false, true, 'end', toolbox);
-  startBlocklyInstance('HorizontalEndRTL', true, true, 'end', toolbox);
-}
-
-function startBlocklyInstance(suffix, rtl, horizontalLayout, position,
-    toolbox) {
-  options.rtl = rtl;
-  options.toolbox = toolbox;
-  options.horizontalLayout = horizontalLayout;
-  options.toolboxPosition = position;
-  Blockly.inject('blocklyDiv' + suffix, options);
-}
-</script>
 
 <style>
 html, body {
@@ -458,5 +395,69 @@ h1 {
     <category name="Variables" colour="330" custom="VARIABLE"></category>
     <category name="Functions" colour="290" custom="PROCEDURE"></category>
   </xml>
+    <script src="../blockly_uncompressed.js"></script>
+<script src="../msg/messages.js"></script>
+<script src="../blocks/logic.js"></script>
+<script src="../blocks/loops.js"></script>
+<script src="../blocks/math.js"></script>
+<script src="../blocks/text.js"></script>
+<script src="../blocks/lists.js"></script>
+<script src="../blocks/colour.js"></script>
+<script src="../blocks/variables.js"></script>
+<script src="../blocks/procedures.js"></script>
+<script>
+'use strict';
+var options = {
+  comments: true,
+  collapse: true,
+  disable: true,
+  maxBlocks: Infinity,
+  media: '../media/',
+  oneBasedIndex: true,
+  readOnly: false,
+  //rtl: false,
+  scrollbars: true,
+  trashcan: true,
+  //toolbox: null,
+  //horizontalLayout: false,
+  //toolboxPosition: 'start',
+  zoom: {
+    controls: true,
+    wheel: false,
+    startScale: 1.0,
+    maxScale: 4,
+    minScale: 0.25,
+    scaleSpeed: 1.1
+  }
+};
+
+function start() {
+  var match = location.search.match(/toolbox=([^&]+)/);
+  var toolbox =
+      document.getElementById('toolbox-' + (if (match) { match[1] } else { 'categories' }));
+  document.forms.options.elements.toolbox.selectedIndex =
+      Number(toolbox.getElementsByTagName('category').length === 0);
+  startBlocklyInstance('VertStartLTR', false, false, 'start', toolbox);
+  startBlocklyInstance('VertStartRTL', true, false, 'start', toolbox);
+
+  startBlocklyInstance('VertEndLTR', false, false, 'end', toolbox);
+  startBlocklyInstance('VertEndRTL', true, false, 'end', toolbox);
+
+  startBlocklyInstance('HorizontalStartLTR', false, true, 'start', toolbox);
+  startBlocklyInstance('HorizontalStartRTL', true, true, 'start', toolbox);
+
+  startBlocklyInstance('HorizontalEndLTR', false, true, 'end', toolbox);
+  startBlocklyInstance('HorizontalEndRTL', true, true, 'end', toolbox);
+}
+
+function startBlocklyInstance(suffix, rtl, horizontalLayout, position,
+    toolbox) {
+  options.rtl = rtl;
+  options.toolbox = toolbox;
+  options.horizontalLayout = horizontalLayout;
+  options.toolboxPosition = position;
+  Blockly.inject('blocklyDiv' + suffix, options);
+}
+</script>
 </body>
 </html>

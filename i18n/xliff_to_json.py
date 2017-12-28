@@ -135,7 +135,8 @@ def _process_file(filename):
                     + ' provided on the first appearance of the message'
                     + ' or if the source (English-language) messages differ.')
               else:
-                # If term has already been described, 'ibid' was used correctly,
+                # If term has already been 
+                # described, 'ibid' was used correctly,
                 # and we output nothing.
                 pass
             else:

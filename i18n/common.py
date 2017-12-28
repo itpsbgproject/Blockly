@@ -65,12 +65,14 @@ def read_json_file(filename):
 
 
 def _create_qqq_file(output_dir):
-    """Creates a qqq.json file with message documentation for translatewiki.net.
+    """Creates a qqq.json file with 
+    message documentation for translatewiki.net.
 
     The file consists of key-value pairs, where the keys are message ids and
     the values are descriptions for the translators of the messages.
     What documentation exists for the format can be found at:
-    http://translatewiki.net/wiki/Translating:Localisation_for_developers#Message_documentation
+    http://translatewiki.net/wiki/
+    Translating:Localisation_for_developers#Message_documentation
 
     The file should be closed by _close_qqq_file().
 
@@ -78,7 +80,8 @@ def _create_qqq_file(output_dir):
         output_dir: The output directory.
 
     Returns:
-        A pointer to a file to which a left brace and newline have been written.
+        A pointer to a file to which a 
+        left brace and newline have been written.
 
     Raises:
         IOError: An error occurred while opening or writing the file.
@@ -199,7 +202,8 @@ def write_files(author, lang, output_dir, units, write_key_file):
         lang: ISO 639-1 source language code.
         output_dir: Relative directory for output files.
         units: A list of dictionaries with entries for 'meaning', 'source',
-            'description', and 'keys' (the last only if write_key_file is true),
+            'description', and 'keys' (the last 
+            only if write_key_file is true),
             in the order desired in the output files.
         write_key_file: Whether to output a keys.json file.
 
