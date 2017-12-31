@@ -167,7 +167,7 @@ blocklyApp.FieldSegmentComponent = ng.core.Component({
   },
   // Confirm a selection for dropdown fields.
   selectOption: function() {
-    if (this.optionValue !== Blockly.RENAME_VARIABLE_ID && this.optionValue !=
+    if (this.optionValue !== Blockly.RENAME_VARIABLE_ID && this.optionValue !==
         Blockly.DELETE_VARIABLE_ID) {
       this.mainField.setValue(this.optionValue);
     }

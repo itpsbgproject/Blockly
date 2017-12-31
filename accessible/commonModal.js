@@ -47,7 +47,7 @@ Blockly.CommonModal.setupKeyboardOverrides = function(component) {
 Blockly.CommonModal.getInteractiveElements = function(component) {
   return Array.prototype.filter.call(
     component.getInteractiveContainer().elements, function(element) {
-    if (element.type == 'hidden') {
+    if (element.type === 'hidden') {
       return false;
     }
     if (element.disabled) {
