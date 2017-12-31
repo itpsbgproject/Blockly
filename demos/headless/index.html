@@ -1,5 +1,10 @@
-<!--This page shows the query results -->
 <!DOCTYPE html>/
+<!--This page shows the query results -->
+<!--
+      Author: Jose Pedro Pedales
+      Version: 1.1
+      Description: In case of having a 'home page' set in the web.xml, it must redirect to the entry point '.do'
+     -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -31,10 +36,10 @@
   <p>This is a simple demo of generating Python code from XML with no graphics.
   This might be useful for server-side code generation.</p>
 
-  <table style="width: 100%">
+  <h1>Ok</h1>
     <tr>
-      <td style="width:50%">
-        <textarea id="xml_input" NAME="" ROWS="5">
+       <h1>Ok</h1>
+        <textarea id="xml_input" NAME="" ROWS="5" COLS="20">
 <xml>
   <block type="controls_if" inline="false" x="20" y="20">
     <mutation else="1"></mutation>
@@ -87,36 +92,16 @@
       </td>
       <td>
       </td>
-      <td style="width:50%">
-        <textarea id="code_output" readonly NAME="" ROWS="5"></textarea>
+       <td>
+        <textarea id="code_output" readonly NAME="" ROWS="5" COLS="20"></textarea>
       </td>
     </tr>
   </table>
 
-  <div style="text-align: center">
-    <button onclick="generate()" NAME="" VALUE="yel"> <BR> Generate Python &#10548;</button>
+  <div>
+    <button NAME="" VALUE="yel"> <BR> Generate Python &#10548;</button>
   </div>
 
-  <script>
-    function generate() {
-      // Parse the XML into a tree.
-      var xmlText = document.getElementById('xml_input').value;
-      try {
-        var xml = Blockly.Xml.textToDom(xmlText)
-      } catch (e) {
-        alert(e);
-        return;
-      }
-      // Create a headless workspace.
-      var demoWorkspace = new Blockly.Workspace();
-      Blockly.Xml.domToWorkspace(xml, demoWorkspace);
-      var code = Blockly.Python.workspaceToCode(demoWorkspace);
-      document.getElementById('code_output').value = code;
-    }
-  </script>
- <script src="../../blockly_compressed.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../python_compressed.js"></script>
-  <script src="../../msg/js/en.js"></script>
+
 </body>
 </html>

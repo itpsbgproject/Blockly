@@ -1,5 +1,10 @@
-<!--This page shows the query results -->
 <!DOCTYPE html>
+<!--This page shows the query results -->
+<!--
+      Author: Jose Pedro Pedales
+      Version: 1.1
+      Description: In case of having a 'home page' set in the web.xml, it must redirect to the entry point '.do'
+     -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -48,7 +53,7 @@
 
 
 
-  <xml id="blockly-toolbox-xml" style="display: none">
+  <xml id="blockly-toolbox-xml">
     <category name="Logic" colour="210">
       <block type="controls_if"></block>
       <block type="logic_compare"></block>
@@ -302,7 +307,7 @@
     </category>
     <category name="Variables" colour="330" custom="VARIABLE"></category>
   </xml>
-
+<noscript>Your browser does not support JavaScript!</noscript>
   <script src="../../accessible/libs/es6-shim.min.js"></script>
   <script src="../../accessible/libs/angular2-polyfills.min.js"></script>
   <script src="../../accessible/libs/Rx.umd.min.js"></script>
@@ -327,5 +332,6 @@
       ng.platform.browser.bootstrap(blocklyApp.AppComponent);
     });
   </script>
+ 
 </body>
 </html>

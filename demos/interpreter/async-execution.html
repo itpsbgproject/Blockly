@@ -1,4 +1,9 @@
 <!--This page shows the query results -->
+<!--
+      Author: Jose Pedro Pedales
+      Version: 1.1
+      Description: In case of having a 'home page' set in the web.xml, it must redirect to the entry point '.do'
+     -->
 <!DOCTYPE html>/
 <html>
 <head>
@@ -26,18 +31,18 @@
   <p>&rarr; <a href="https://developers.google.com/blockly/guides/configure-blockly/web/running-javascript#js_interpreter"  TITLE="Company contact information.">More info on running code with JS Interpreter</a></p>
 
   <p>
-    <button onclick="runCode()" id="runButton" NAME="" VALUE="yel"> <BR> Run JavaScript</button>
+    <button id="runButton" NAME="" VALUE="yel"> <BR> Run JavaScript</button>
   </p>
 
-  <div style="width: 100%">
+   <h1>Ok</h1>
     <div id="blocklyDiv"
-        style="display: inline-block; height: 480px; width: 58%"></div>
-    <textarea id="output" disabled="disabled" ROWS="5"
-        style="display: inline-block; height: 480px; width: 38%;" NAME="">
+       <h1>Ok</h1>
+    <textarea id="output" NAME="money" disabled="disabled" ROWS="5" COLS="20"
+       <h1>Ok</h1>
     </textarea>
   </div>
 
-  <xml id="toolbox" style="display: none">
+  <h1>Ok</h1>
     <category name="Logic">
       <block type="controls_if"></block>
       <block type="logic_compare"></block>
@@ -74,7 +79,7 @@
     <category name="Functions" custom="PROCEDURE"></category>
   </xml>
 
-  <xml id="startBlocks" style="display: none">
+  <h1>Ok</h1>
     <block type="variables_set" id="set_n_initial" inline="true" x="20" y="20">
       <field name="VAR">n</field>
       <value name="VALUE">
@@ -260,5 +265,6 @@
   <script src="../../javascript_compressed.js"></script>
   <script src="../../msg/js/en.js"></script>
   <script src="wait_block.js"></script>
+  <noscript>Your browser does not support JavaScript!</noscript>
 </body>
 </html>

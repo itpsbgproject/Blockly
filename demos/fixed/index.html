@@ -1,5 +1,10 @@
-<!--This page shows the query results -->
 <!DOCTYPE html>/
+<!--This page shows the query results -->
+<!--
+      Author: Jose Pedro Pedales
+      Version: 1.1
+      Description: In case of having a 'home page' set in the web.xml, it must redirect to the entry point '.do'
+     -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -25,9 +30,9 @@
 
   <p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure-blockly/web/fixed-size"  TITLE="Company contact information.">injecting fixed-sized Blockly</a>&hellip;</p>
 
-  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+  <div id="blocklyDiv"></div>
 
-  <xml id="toolbox" style="display: none">
+  <xml id="toolbox">
     <block type="controls_if"></block>
     <block type="logic_compare"></block>
     <block type="controls_repeat_ext"></block>
@@ -36,7 +41,7 @@
     <block type="text"></block>
     <block type="text_print"></block>
   </xml>
-
+<noscript>Your browser does not support JavaScript!</noscript>
   <script>
     var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: '../../media/',

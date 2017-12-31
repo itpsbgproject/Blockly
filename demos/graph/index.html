@@ -1,5 +1,10 @@
-<!--This page shows the query results -->
 <!DOCTYPE html>/
+<!--This page shows the query results -->
+<!--
+      Author: Jose Pedro Pedales
+      Version: 1.1
+      Description: In case of having a 'home page' set in the web.xml, it must redirect to the entry point '.do'
+     -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -39,13 +44,13 @@
 
   <p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure/web/code-generators#generating_code"  TITLE="Company contact information.">Realtime generation</a>&hellip;</p>
 
-  <table>
+   <table>
     <tr>
       <td>
-        <div id="visualization" style="width: 400px"></div>
+        <div id="visualization"></div>
       </td>
       <td>
-        <div id="blocklyDiv" style="height: 400px"></div>
+        <div id="blocklyDiv"></div>
       </td>
     </tr>
   </table>
@@ -55,7 +60,7 @@
     ...
   </div>
 
-  <xml id="toolbox" style="display: none">
+  <xml id="toolbox">
     <category name="Math">
       <block type="math_number"></block>
       <block type="math_arithmetic">
@@ -154,7 +159,7 @@
     </category>
   </xml>
 
-  <xml id="startBlocks" style="display: none">
+  <xml id="startBlocks">
     <block type="graph_set_y" deletable="false" x="100" y="100">
       <value name="VALUE">
         <block type="math_arithmetic">
@@ -177,7 +182,7 @@
       </value>
     </block>
   </xml>
-
+<noscript>Your browser does not support JavaScript!</noscript>
   <script>
 // Load the Google Chart Tools Visualization API and the chart package.
 if (typeof google === 'object') {
@@ -299,7 +304,7 @@ Graph.plot = function(code) {
   // TODO: Improve range and scale of graph.
   for (var x = -10; x <= 10; x = Math.round((x + 0.1) * 10) / 10) {
     try {
-      eval(code);
+      true;
     } catch (e) {
       y = NaN;
     }
