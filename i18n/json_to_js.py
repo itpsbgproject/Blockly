@@ -121,7 +121,7 @@ def main():
                         help='ISO 639-1 source language code')
     parser.add_argument('--output_dir', default='generated',
                         help='relative directory for output files')
-    parser.add_argument('--key_file', default='json' 
+    parser.add_argument('--key_file', default='json'
       + os.path.sep + 'keys.json',
                         help='relative path to input keys file')
     parser.add_argument('--template', default='template.soy')

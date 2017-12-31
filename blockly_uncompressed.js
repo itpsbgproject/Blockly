@@ -20,7 +20,8 @@ window.BLOCKLY_DIR = (function() {
         return match[1];
       }
     }
-    alert('Could not detect Blockly\'s directory name.');
+    var msg = 'Could not detect Blockly\'s directory name.';
+    alert(msg);
   }
   return '';
 })();
@@ -33,11 +34,13 @@ window.BLOCKLY_BOOT = function() {
   } else {
     // Execute after Closure has loaded.
     if (!window.goog) {
-      alert('Error: Closure not found.  Read this:\n' +
-            'developers.google.com/blockly/guides/modify/web/closure');
+      var msg = 'Error: Closure not found.  Read this:\n' +
+            'developers.google.com/blockly/guides/modify/web/closure';
+      alert(msg);
     }
     dir = window.BLOCKLY_DIR.match(/[^\/]+$/)[0];
   }
+}
 goog.addDependency("../../../" + dir + "/core/block.js", ['Blockly.Block'], ['Blockly.Blocks', 'Blockly.Comment', 'Blockly.Connection', 'Blockly.Extensions', 'Blockly.Input', 'Blockly.Mutator', 'Blockly.Warning', 'Blockly.Workspace', 'Blockly.Xml', 'goog.array', 'goog.asserts', 'goog.math.Coordinate', 'goog.string']);
 goog.addDependency("../../../" + dir + "/core/block_drag_surface.js", ['Blockly.BlockDragSurfaceSvg'], ['Blockly.utils', 'goog.asserts', 'goog.math.Coordinate']);
 goog.addDependency("../../../" + dir + "/core/block_dragger.js", ['Blockly.BlockDragger'], ['Blockly.DraggedConnectionManager', 'goog.math.Coordinate', 'goog.asserts']);
@@ -1747,7 +1750,7 @@ goog.require('Blockly.constants');
 goog.require('Blockly.inject');
 goog.require('Blockly.utils');
 goog.require('Blockly.utils.uiMenu');
-
+{
 delete this.BLOCKLY_DIR;
 delete this.BLOCKLY_BOOT;
 };

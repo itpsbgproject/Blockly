@@ -20,7 +20,7 @@ window.BLOCKLY_DIR = (function() {
         return match[1];
       }
     }
-    alert('Could not detect Blockly\'s directory name.');
+   // alert('Could not detect Blockly\'s directory name.');
   }
   return '';
 })();
@@ -33,11 +33,12 @@ window.BLOCKLY_BOOT = function() {
   } else {
     // Execute after Closure has loaded.
     if (!window.goog) {
-      alert('Error: Closure not found.  Read this:\n' +
-            'developers.google.com/blockly/guides/modify/web/closure');
+     // alert('Error: Closure not found.  Read this:\n' +
+       //     'developers.google.com/blockly/guides/modify/web/closure');
     }
     dir = window.BLOCKLY_DIR.match(/[^\/]+$/)[0];
   }
+};
 goog.addDependency("../../../" + dir + "/accessible/app.component.js", ['blocklyApp.AppComponent'], ['Blockly', 'blocklyApp.AudioService', 'blocklyApp.BlockConnectionService', 'blocklyApp.BlockOptionsModalComponent', 'blocklyApp.BlockOptionsModalService', 'blocklyApp.KeyboardInputService', 'blocklyApp.NotificationsService', 'blocklyApp.SidebarComponent', 'blocklyApp.ToolboxModalComponent', 'blocklyApp.ToolboxModalService', 'blocklyApp.TranslatePipe', 'blocklyApp.TreeService', 'blocklyApp.UtilsService', 'blocklyApp.VariableAddModalComponent', 'blocklyApp.VariableModalService', 'blocklyApp.VariableRenameModalComponent', 'blocklyApp.VariableRemoveModalComponent', 'blocklyApp.WorkspaceComponent']);
 goog.addDependency("../../../" + dir + "/accessible/audio.service.js", ['blocklyApp.AudioService'], ['blocklyApp.NotificationsService']);
 goog.addDependency("../../../" + dir + "/accessible/block-connection.service.js", ['blocklyApp.BlockConnectionService'], ['blocklyApp.AudioService', 'blocklyApp.NotificationsService']);
@@ -1794,7 +1795,7 @@ goog.require('blocklyApp.VariableRemoveModalComponent');
 goog.require('blocklyApp.VariableRenameModalComponent');
 goog.require('blocklyApp.WorkspaceBlockComponent');
 goog.require('blocklyApp.WorkspaceComponent');
-
+{
 delete this.BLOCKLY_DIR;
 delete this.BLOCKLY_BOOT;
 };

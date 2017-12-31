@@ -57,10 +57,10 @@ def main():
 
     # Built up output strings as an array to make output of delimiters easier.
     output = []
-    for key in j:
+    for key,val in j.items():
       if key != '@metadata':
         output.append('\t"' + key + '": "' +
-                      j[key].replace('\n', '\\n') + '"')
+                      val.replace('\n', '\\n') + '"')
 
     # Output results.
     with codecs.open(filename + args.suffix, 'w', 'utf-8') as outfile:

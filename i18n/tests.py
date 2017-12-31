@@ -22,6 +22,7 @@ import common
 import re
 import unittest
 
+
 class TestSequenceFunctions(unittest.TestCase):
   def test_insert_breaks(self):
     spaces = re.compile(r'\s+|\\n')

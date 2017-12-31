@@ -35,16 +35,18 @@ def string_is_ascii(s):
   except UnicodeEncodeError:
     return False
 
+
 def load_constants(filename):
   """Read in constants file, which must be output in every language."""
   constant_defs = read_json_file(filename);
   constants_text = '\n'
-  for key in constant_defs:
-    value = constant_defs[key]
+  for key,val in constant_defs.items():
+    value = val
     value = value.replace('"', '\\"')
     constants_text += u'\n/** @export */ Blockly.Msg.{0} = \"{1}\";'.format(
         key, value)
   return constants_text
+
 
 def main():
   """Generate .js files defining Blockly core and language messages."""
@@ -88,12 +90,12 @@ def main():
   # Read in synonyms file, which must be output in every language.
   synonym_defs = read_json_file(os.path.join(
       os.curdir, args.source_synonym_file))
-  synonym_text = '\n'.join( 
+  synonym_text = '\n'.join(
     + [u'/** @export */ Blockly.Msg.{0} = Blockly.Msg.{1};'
       .format(key, synonym_defs[key]) for key in synonym_defs])
 
   # Read in constants file, which must be output in every language.
-  constants_text = load_constants(os.path.join 
+  constants_text = load_constants(os.path.join
     + (os.curdir, args.source_constants_file))
 
   # Create each output file.

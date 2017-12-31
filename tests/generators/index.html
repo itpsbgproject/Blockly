@@ -1,5 +1,10 @@
-<!--This page shows the query results -->
 <!DOCTYPE html> /
+<!--This page shows the query results -->
+<!--
+      Author: Jose Pedro Pedales
+      Version: 1.1
+      Description: In case of having a 'home page' set in the web.xml, it must redirect to the entry point '.do'
+     -->
 <html>
 <head>
 <meta charset="utf-8">
@@ -31,10 +36,10 @@ h1 {
 }
 </style>
 </head>
-<body onload="start()">
+<body>
   <div id="blocklyDiv"></div>
 
-  <xml id="toolbox" style="display: none">
+  <xml id="toolbox">
     <category name="Unit test" colour="65">
       <block type="unittest_main"></block>
       <block type="unittest_assertequals">
@@ -146,42 +151,42 @@ h1 {
         <option value="functions.xml">Functions</option>
         <option value="">Other...</option>
       </select>
-      <input type="button" value="Load" onclick="loadXml()" NAME="">
+      <input type="button" value="Load" NAME="">
     </p>
 
     <p>
-      <input id="indexing" type="checkbox" onchange="changeIndex()" checked NAME="" VALUE="yel"> <BR>
+      <input id="indexing" type="checkbox" checked NAME="" VALUE="yel"> <BR>
       <label for="indexing">Generate with one-based indexing</label>
     </p>
 
     <p>
       Generate:
-      <input type="button" value="XML" onclick="toXml()" NAME="">
-      <div style="display: inline-block;">
-        <input type="button" value="JavaScript" onclick="toJavaScript()" NAME="">
+      <input type="button" value="XML" NAME="">
+       <div>
+        <input type="button" value="JavaScript" NAME="">
         <br><a target="_blank" href="https://repl.it/languages/javascript"  TITLE="Company contact information.">interpreter</a>
       </div>
-      <div style="display: inline-block;">
-        <input type="button" value="Python" onclick="toPython()" NAME="">
+      <div>
+        <input type="button" value="Python" NAME="">
         <br><a target="_blank" href="https://repl.it/languages/python"  TITLE="Company contact information.">interpreter</a>
       </div>
-      <div style="display: inline-block;">
-        <input type="button" value="PHP" onclick="toPhp()" NAME="">
+       <div>
+        <input type="button" value="PHP" NAME="">
         <br><a target="_blank" href="https://repl.it/languages/php"  TITLE="Company contact information.">interpreter</a>
       </div>
-      <div style="display: inline-block;">
-        <input type="button" value="Lua" onclick="toLua()" NAME="">
+       <div>
+        <input type="button" value="Lua" NAME="">
         <br><a target="_blank" href="http://rextester.com/l/lua_online_compiler"  TITLE="Company contact information.">interpreter</a>
       </div>
-      <div style="display: inline-block;">
-        <input type="button" value="Dart" onclick="toDart()" NAME="">
+       <div>
+        <input type="button" value="Dart" NAME="">
         <br><a target="_blank" href="https://dartpad.dartlang.org/"  TITLE="Company contact information.">interpreter</a>
       </div>
     </p>
   </td></tr><tr><td height="99%">
-    <textarea id="importExport" readonly="readonly" wrap="off" ROWS="5" NAME=""></textarea>
+    <textarea id="importExport" readonly="readonly" wrap="off" ROWS="5" COLS="20" NAME=""></textarea>
   </td></tr></table>
-
+<noscript>Your browser does not support JavaScript!</noscript>
   <script src="../../blockly_uncompressed.js"></script>
 
 <script src="../../generators/javascript.js"></script>
@@ -366,5 +371,6 @@ function changeIndex() {
   demoWorkspace.toolbox_.flyout_.workspace_.options.oneBasedIndex = oneBasedIndex;
 }
 </script>
+
 </body>
 </html>

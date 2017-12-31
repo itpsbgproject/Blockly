@@ -22,6 +22,7 @@ import json
 import os
 from datetime import datetime
 
+
 class InputError(Exception):
     """Exception raised for errors in the input.
 
@@ -32,7 +33,7 @@ class InputError(Exception):
     """
 
     def __init__(self, location, msg):
-        Exception.__init__(self, '{0}: {1}'.format(location, msg))
+    """    Exception.__init__(self, '{0}: {1}'.format(location, msg))"""
         self.location = location
         self.msg = msg
 
@@ -65,7 +66,7 @@ def read_json_file(filename):
 
 
 def _create_qqq_file(output_dir):
-    """Creates a qqq.json file with 
+    """Creates a qqq.json file with
     message documentation for translatewiki.net.
 
     The file consists of key-value pairs, where the keys are message ids and
@@ -80,7 +81,7 @@ def _create_qqq_file(output_dir):
         output_dir: The output directory.
 
     Returns:
-        A pointer to a file to which a 
+        A pointer to a file to which a
         left brace and newline have been written.
 
     Raises:
@@ -202,7 +203,7 @@ def write_files(author, lang, output_dir, units, write_key_file):
         lang: ISO 639-1 source language code.
         output_dir: Relative directory for output files.
         units: A list of dictionaries with entries for 'meaning', 'source',
-            'description', and 'keys' (the last 
+            'description', and 'keys' (the last
             only if write_key_file is true),
             in the order desired in the output files.
         write_key_file: Whether to output a keys.json file.
@@ -218,10 +219,10 @@ def write_files(author, lang, output_dir, units, write_key_file):
     first_entry = True
     for unit in units:
         if not first_entry:
-            lang_file.write(',\n')
+            """lang_file.write(',\n')
             if write_key_file:
               key_file.write(',\n')
-            qqq_file.write(',\n')
+            qqq_file.write(',\n')"""
         lang_file.write(u'\t"{0}": "{1}"'.format(
             unit['meaning'],
             unit['source'].replace('"', "'")))

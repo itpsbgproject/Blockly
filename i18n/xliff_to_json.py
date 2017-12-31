@@ -46,6 +46,7 @@ def _parse_trans_unit(trans_unit):
         InputError: A required field was not present.
     """
 
+
     def get_value(tag_name):
         elts = trans_unit.getElementsByTagName(tag_name)
         if not elts:
@@ -123,9 +124,10 @@ def _process_file(filename):
                 if not key in unit or not unit[key]:
                     raise InputError(filename + ':' + unit['key'],
                                      key + ' not found')
-            if unit['description'].lower() == 'ibid':
-              if unit['meaning'] not in names:
-                # If the term has not already been described, the use of 'ibid'
+            if unit['description'].lower() == 'ibid' and
+                unit['meaning'] not in names:
+                # If the term has not already
+                # been described, the use of 'ibid'
                 # is an error.
                 raise InputError(
                     filename,
@@ -134,11 +136,6 @@ def _process_file(filename):
                     + '.  This error can occur if the definition was not'
                     + ' provided on the first appearance of the message'
                     + ' or if the source (English-language) messages differ.')
-              else:
-                # If term has already been 
-                # described, 'ibid' was used correctly,
-                # and we output nothing.
-                pass
             else:
               if unit['meaning'] in names:
                 raise InputError(filename,
@@ -169,6 +166,8 @@ def sort_units(units, templates):
         InputError: If a meaning definition cannot be found in the
             templates.
     """
+
+
     def key_function(unit):
         match = re.search(
             '\\smeaning\\s*=\\s*"{0}"\\s'.format(unit['meaning']),

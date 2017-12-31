@@ -1,5 +1,10 @@
-<!--This page shows the query results -->
 <!DOCTYPE html> /
+<!--This page shows the query results -->
+<!--
+      Author: Jose Pedro Pedales
+      Version: 1.1
+      Description: In case of having a 'home page' set in the web.xml, it must redirect to the entry point '.do'
+     -->
 <html>
 <head>
 <meta charset="utf-8">
@@ -33,7 +38,7 @@ h1 {
 
 </style>
 </head>
-<body onload="start()">
+<body>
 
   <div id="blocklyDiv"></div>
 
@@ -42,16 +47,16 @@ h1 {
   <p><a href="javascript:void(workspace.setVisible(true))" TITLE="Company contact information.">Show</a>
    - <a href="javascript:void(workspace.setVisible(false))"  TITLE="Company contact information.">Hide</a></p>
 
-  <form id="options">
-    <select name="dir" onchange="document.forms.options.submit()">
+  <form id="options" ACTION="control.asp">
+    <select name="dir">
       <option value="ltr">LTR</option>
       <option value="rtl">RTL</option>
     </select>
-    <select name="toolbox" onchange="document.forms.options.submit()">
+    <select name="toolbox">
       <option value="categories">Categories</option>
       <option value="simple">Simple</option>
     </select>
-    <select name="side" onchange="document.forms.options.submit()">
+    <select name="side">
       <option value="start">Start</option>
       <option value="end">End</option>
       <option value="top">Top</option>
@@ -60,36 +65,35 @@ h1 {
   </form>
 
   <p>
-    <input type="button" value="Export to XML" onclick="toXml()" NAME="">
+    <input type="button" value="Export to XML" NAME="">
     &nbsp;
-    <input type="button" value="Import from XML" onclick="fromXml()" id="import" NAME="">
+    <input type="button" value="Import from XML" id="import" NAME="">
     <br>
-    <input type="button" value="To JavaScript" onclick="toCode('JavaScript')" NAME="">
+    <input type="button" value="To JavaScript" NAME="">
     &nbsp;
-    <input type="button" value="To Python" onclick="toCode('Python')" NAME="">
+    <input type="button" value="To Python" NAME="">
     &nbsp;
-    <input type="button" value="To PHP" onclick="toCode('PHP')" NAME="">
+    <input type="button" value="To PHP" NAME="">
     &nbsp;
-    <input type="button" value="To Lua" onclick="toCode('Lua')" NAME="">
+    <input type="button" value="To Lua" NAME="">
     &nbsp;
-    <input type="button" value="To Dart" onclick="toCode('Dart')" NAME="">
+    <input type="button" value="To Dart" NAME="">
     <br>
-    <textarea id="importExport" style="width: 26%; height: 12em" ROWS="5"
-      onchange="taChange();" onkeyup="taChange()" NAME=""></textarea>
+     <input type="checkbox"  id="logCheck" NAME="" VALUE="yel"> <BR>
   </p>
 
   <p>
     Stress test: &nbsp;
-    <input type="button" value="Airstrike!" onclick="airstrike(100)" NAME="">
-    <input type="button" value="Spaghetti!" onclick="spaghetti(8)" NAME="">
-    <input type="button" value="Fake some drags!" onclick="fakeManyDrags()" NAME="">
+    <input type="button" value="Airstrike!" NAME="">
+    <input type="button" value="Spaghetti!" NAME="">
+    <input type="button" value="Fake some drags!" NAME="">
   </p>
   <p>
     Log events: &nbsp;
-    <input type="checkbox" onclick="logEvents(this.checked)" id="logCheck" NAME="" VALUE="yel"> <BR>
+    <input type="checkbox" id="logCheck" NAME="" VALUE="yel"> <BR>
   </p>
 
-  <xml id="toolbox-simple" style="display: none">
+<xml id="toolbox-simple">
     <block type="controls_ifelse"></block>
     <block type="logic_compare"></block>
     <!-- <block type="control_repeat"></block> -->
@@ -108,7 +112,7 @@ h1 {
     <block type="logic_ternary"></block>
   </xml>
 
-  <xml id="toolbox-categories" style="display: none">
+  <xml id="toolbox-categories">
     <category name="Logic" colour="210">
       <block type="controls_if"></block>
       <block type="logic_compare"></block>
@@ -431,7 +435,7 @@ h1 {
     <category name="Variables" colour="330" custom="VARIABLE"></category>
     <category name="Functions" colour="290" custom="PROCEDURE"></category>
   </xml>
-
+<noscript>Your browser does not support JavaScript!</noscript>
   <script src="../blockly_uncompressed.js"></script>
 <script src="../generators/javascript.js"></script>
 <script src="../generators/javascript/logic.js"></script>
@@ -741,6 +745,5 @@ var spaghettiXml = [
   '  </block>'].join('\n');
 
 </script>
-
 </body>
 </html>
