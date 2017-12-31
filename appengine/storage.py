@@ -19,15 +19,16 @@ limitations under the License.
 """Store and retrieve XML with App Engine.
 """
 
-__author__ = "q.neutron@gmail.com (Quynh Neutron)"
-
 import cgi
 from random import randint
 from google.appengine.ext import db
 from google.appengine.api import memcache
 import logging
 
+__author__ = "q.neutron@gmail.com (Quynh Neutron)"
+
 print "Content-Type: text/plain\n"
+
 
 def keyGen():
   # Generate a random string of length KEY_LEN.
@@ -35,6 +36,7 @@ def keyGen():
   CHARS = "abcdefghijkmnopqrstuvwxyz23456789" # Exclude l, 0, 1.
   max_index = len(CHARS) - 1
   return "".join([CHARS[randint(0, max_index)] for x in range(KEY_LEN)])
+
 
 class Xml(db.Model):
   # A row in the database.
