@@ -1,5 +1,10 @@
-<!--This page shows the query results -->
 <!DOCTYPE html>
+<!--This page shows the query results -->
+<!--
+      Author: Jose Pedro Pedales
+      Version: 1.1
+      Description: In case of having a 'home page' set in the web.xml, it must redirect to the entry point '.do'
+     -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -51,9 +56,9 @@
     </tr>
   </table>
 
-  <div id="blocklyDiv" style="position: absolute"></div>
+ <div id="blocklyDiv"></div>
 
-  <xml id="toolbox" style="display: none">
+  <xml id="toolbox">
     <block type="controls_if"></block>
     <block type="logic_compare"></block>
     <block type="controls_repeat_ext"></block>
@@ -62,7 +67,7 @@
     <block type="text"></block>
     <block type="text_print"></block>
   </xml>
-
+<noscript>Your browser does not support JavaScript!</noscript>
   <script>
     var blocklyArea = document.getElementById('blocklyArea');
     var blocklyDiv = document.getElementById('blocklyDiv');

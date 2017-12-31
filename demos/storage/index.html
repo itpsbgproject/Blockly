@@ -1,4 +1,9 @@
 <!--This page shows the query results -->
+<!--
+      Author: Jose Pedro Pedales
+      Version: 1.1
+      Description: In case of having a 'home page' set in the web.xml, it must redirect to the entry point '.do'
+     -->
 <!DOCTYPE html>/
 <html>
 <head>
@@ -22,6 +27,7 @@
   </style>
 </head>
 <body>
+  <noscript>Your browser does not support JavaScript!</noscript>
   <script src="/storage.js"></script>
   <script src="../../blockly_compressed.js"></script>
   <script src="../../blocks_compressed.js"></script>
@@ -47,7 +53,7 @@
   <p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure-blockly/web/cloud-storage"  TITLE="Company contact information.">Cloud Storage</a>&hellip;</p>
 
   <p>
-    <button onclick="BlocklyStorage.link()" NAME="" VALUE="yel"> <BR> Save Blocks</button>
+    <button NAME="" VALUE="yel"> <BR> Save Blocks</button>
   </p>
 
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
@@ -92,6 +98,5 @@
       BlocklyStorage.retrieveXml(window.location.hash.substring(1));
     }
   </script>
-
 </body>
 </html>
